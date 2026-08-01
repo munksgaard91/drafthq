@@ -4,21 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FPL Draft HQ 2026/27</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%230F231B%22/%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2229%22%20fill%3D%22none%22%20stroke%3D%22%23CDA53A%22%20stroke-width%3D%222.5%22/%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2215%22%20fill%3D%22%23F3F0E6%22/%3E%0A%3Cpolygon%20points%3D%2232%2C22%2039%2C27.5%2036.3%2C35.8%2027.7%2C35.8%2025%2C27.5%22%20fill%3D%22%230F231B%22/%3E%0A%3Cpath%20d%3D%22M32%2022%20L32%2017%20M39%2027.5%20L45.5%2024%20M36.3%2035.8%20L39.5%2043%20M27.7%2035.8%20L24.5%2043%20M25%2027.5%20L18.5%2024%22%20stroke%3D%22%230F231B%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%232E0433%22/%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2229%22%20fill%3D%22none%22%20stroke%3D%22%232ECC81%22%20stroke-width%3D%222.5%22/%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2215%22%20fill%3D%22%23FFFFFF%22/%3E%0A%3Cpolygon%20points%3D%2232%2C22%2039%2C27.5%2036.3%2C35.8%2027.7%2C35.8%2025%2C27.5%22%20fill%3D%22%232E0433%22/%3E%0A%3Cpath%20d%3D%22M32%2022%20L32%2017%20M39%2027.5%20L45.5%2024%20M36.3%2035.8%20L39.5%2043%20M27.7%2035.8%20L24.5%2043%20M25%2027.5%20L18.5%2024%22%20stroke%3D%22%232E0433%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pitch-dark:#0F231B;
-    --pitch:#173A2B;
-    --pitch-line:#2C5642;
-    --chalk:#F3F0E6;
-    --chalk-dim:#DAD5C4;
-    --gold:#CDA53A;
-    --gold-dim:#8A7233;
-    --coral:#C1473C;
-    --ink:#152018;
-    --muted:#9AB0A2;
+    --pitch-dark:#2E0433;
+    --pitch:#411241;
+    --pitch-line:#54294F;
+    --chalk:#FFFFFF;
+    --chalk-dim:#D8BFD3;
+    --gold:#2ECC81;
+    --gold-dim:#22995F;
+    --coral:#DE5A83;
+    --ink:#241129;
+    --muted:#A88FA4;
+    --cyan:#29B6D8;
+    --pos-gk:#29B6D8;
+    --pos-def:#2ECC81;
+    --pos-mid:#DE5A83;
+    --pos-fwd:#D9A441;
   }
   *{box-sizing:border-box;}
   body{
@@ -34,12 +39,8 @@
     display:flex;flex-direction:column;gap:4px;margin-bottom:22px;
     border-bottom:1px solid var(--pitch-line);padding-bottom:18px;
   }
-  header.top .eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;
-    color:var(--gold);text-transform:uppercase;
-  }
   header.top h1{
-    font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:.02em;
+    font-family:'Bebas Neue',sans-serif;font-size:72px;letter-spacing:.02em;
     margin:2px 0 0;line-height:1;color:var(--chalk);
   }
   header.top p{margin:6px 0 0;color:var(--muted);font-size:14px;}
@@ -52,12 +53,12 @@
     white-space:nowrap;margin-top:2px;
   }
   .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:0 0 auto;}
-  .status-dot.live{background:#7CBE8C;animation:statusPulse 2s infinite;}
+  .status-dot.live{background:var(--gold);animation:statusPulse 2s infinite;}
   .status-dot.offline{background:var(--coral);}
   @keyframes statusPulse{
-    0%{box-shadow:0 0 0 0 rgba(124,190,140,.5);}
-    70%{box-shadow:0 0 0 6px rgba(124,190,140,0);}
-    100%{box-shadow:0 0 0 0 rgba(124,190,140,0);}
+    0%{box-shadow:0 0 0 0 rgba(46,204,129,.5);}
+    70%{box-shadow:0 0 0 6px rgba(46,204,129,0);}
+    100%{box-shadow:0 0 0 0 rgba(46,204,129,0);}
   }
 
   nav.tabs{display:flex;gap:6px;margin-bottom:26px;flex-wrap:wrap;}
@@ -67,7 +68,7 @@
     padding:9px 16px;border-radius:100px;cursor:pointer;transition:.15s;
   }
   nav.tabs button:hover{border-color:var(--gold-dim);color:var(--chalk);}
-  nav.tabs button.active{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+  nav.tabs button.active{background:var(--gold);border-color:var(--gold);color:#FFFFFF;}
 
   .panel{display:none;}
   .panel.active{display:block;animation:fade .25s ease;}
@@ -96,19 +97,19 @@
     display:flex;gap:10px;align-items:center;background:var(--pitch-dark);
     border:1px solid var(--pitch-line);border-radius:10px;padding:10px 12px;
   }
-  .p-card .pos{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
-    background:var(--pitch-line);color:var(--chalk-dim);padding:3px 7px;border-radius:5px;flex:0 0 auto;
+  .pos{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;
+    padding:3px 7px;border-radius:5px;flex:0 0 auto;
   }
   .p-card .name{font-weight:600;font-size:14.5px;flex:0 0 auto;}
   .p-card .club{color:var(--muted);font-size:13px;flex:0 0 auto;}
   .p-card .note{color:var(--chalk-dim);font-size:12.5px;flex:1 1 160px;min-width:160px;}
 
-  .trap{
-    background:rgba(193,71,60,.12);border:1px solid var(--coral);border-radius:10px;
-    padding:12px 14px;font-size:13.5px;color:var(--chalk-dim);margin-top:6px;
-  }
-  .trap strong{color:var(--coral);}
+  /* Position accent colors — shared by static cheatsheet badges and the live draft pool */
+  .pos-GK{background:var(--pos-gk);color:#FFFFFF;}
+  .pos-DEF{background:var(--pos-def);color:#FFFFFF;}
+  .pos-MID{background:var(--pos-mid);color:#FFFFFF;}
+  .pos-FWD{background:var(--pos-fwd);color:#FFFFFF;}
 
   /* shortlist accordions */
   details.pos-list{border:1px solid var(--pitch-line);border-radius:10px;margin-bottom:10px;overflow:hidden;}
@@ -131,8 +132,8 @@
     font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;
     border:none;border-radius:8px;padding:8px 14px;transition:.15s;
   }
-  .btn-gold{background:var(--gold);color:var(--ink);}
-  .btn-gold:hover{background:#e0b747;}
+  .btn-gold{background:var(--gold);color:#FFFFFF;}
+  .btn-gold:hover{background:#41DD92;}
   .btn-ghost{background:transparent;border:1px solid var(--pitch-line);color:var(--chalk-dim);}
   .btn-ghost:hover{border-color:var(--coral);color:var(--coral);}
   .btn-mini{padding:5px 9px;font-size:12px;border-radius:6px;}
@@ -152,13 +153,13 @@
   }
   .slot-group{grid-column:1/-1;margin-bottom:6px;}
   .slot-count{color:var(--muted);font-weight:400;}
-  .slot-count.ok{color:#7CBE8C;}
+  .slot-count.ok{color:var(--gold);}
   .slot-count.over{color:var(--coral);}
 
   .empty-msg{color:var(--muted);font-size:13.5px;font-style:italic;padding:10px 0;}
 
   @media (max-width:640px){
-    header.top h1{font-size:34px;}
+    header.top h1{font-size:48px;}
   }
 </style>
 </head>
@@ -168,7 +169,6 @@
   <header class="top">
     <div class="header-row">
       <div>
-        <span class="eyebrow">Fantasy Premier League · Draft · 2026/27</span>
         <h1>Draft HQ</h1>
       </div>
       <div class="status-pill" id="statusPill" title="Viser om data.json (den auto-opdaterede spillerdata) kunne hentes">
@@ -181,6 +181,7 @@
   <nav class="tabs">
     <button class="tab-btn active" data-tab="cheat">Cheatsheet</button>
     <button class="tab-btn" data-tab="draft">Live draft</button>
+    <button class="tab-btn" data-tab="squad">Min trup</button>
   </nav>
 
   <!-- ============ CHEATSHEET ============ -->
@@ -194,114 +195,126 @@
 
     <div class="card">
       <h2>Prioriteret liste</h2>
-      <p class="sub">Tier-baseret, position-agnostisk — brug den uanset hvor i snake-draften du lander (pick-position er jo random og først kendt ugen før GW1).</p>
 
       <div class="tier-row">
         <div class="tier-num">1</div>
         <div class="tier-players">
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Erling Haaland</span><span class="club">Man City</span><span class="note">239 point sidste sæson — suverænt bedste spiller i FPL, uanset ingen kaptajnbonus.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Bruno Fernandes</span><span class="club">Man Utd</span><span class="note">235 point, sæsonens spiller, straffesparkstager, assist-rekord (21).</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Gabriel</span><span class="club">Arsenal</span><span class="note">209 point — bedste forsvarsspiller i FPL, clean sheets + angrebstrussel.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Erling Haaland</span><span class="club">Man City</span><span class="note">239 point sidste sæson — suverænt bedste spiller i FPL, uanset ingen kaptajnbonus.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bruno Fernandes</span><span class="club">Man Utd</span><span class="note">235 point, sæsonens spiller, straffesparkstager, assist-rekord (21).</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Gabriel</span><span class="club">Arsenal</span><span class="note">209 point — bedste forsvarsspiller i FPL, clean sheets + angrebstrussel.</span></div>
         </div>
       </div>
 
       <div class="tier-row">
         <div class="tier-num">2</div>
         <div class="tier-players">
-          <div class="p-card"><span class="pos">MID</span><span class="name">Semenyo</span><span class="club">Man City</span><span class="note">202 point, eksplosiv sæson.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Virgil van Dijk</span><span class="club">Liverpool</span><span class="note">175 point. Iraola boostede sine CB'ers DefCon-tal i Bournemouth — samme effekt kan følge med ham til Anfield.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Declan Rice</span><span class="club">Arsenal</span><span class="note">184 point, box-to-box med DefCon oveni angrebstruslen.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Semenyo</span><span class="club">Man City</span><span class="note">202 point, eksplosiv sæson.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Virgil van Dijk</span><span class="club">Liverpool</span><span class="note">175 point. Iraola boostede sine CB'ers DefCon-tal i Bournemouth — samme effekt kan følge med ham til Anfield.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Declan Rice</span><span class="club">Arsenal</span><span class="note">184 point, box-to-box med DefCon oveni angrebstruslen.</span></div>
         </div>
       </div>
 
       <div class="tier-row">
         <div class="tier-num">3</div>
         <div class="tier-players">
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Marc Guéhi</span><span class="club">Man City</span><span class="note">179 point — en af ligaens bedste defensive pointmaskiner.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Igor Thiago</span><span class="club">Brentford</span><span class="note">181 point, bedste value-angriber i ligaen, ingen tegn på exit.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Morgan Rogers</span><span class="club">Chelsea</span><span class="note">169 point som Villas gennembrudsspiller — nu britisk rekordsignering hos Xabi Alonsos Chelsea.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">David Raya</span><span class="club">Arsenal</span><span class="note">Guldhandske, 162 point, bedste forsvar i ligaen foran sig.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Marc Guéhi</span><span class="club">Man City</span><span class="note">179 point — en af ligaens bedste defensive pointmaskiner.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Igor Thiago</span><span class="club">Brentford</span><span class="note">181 point, bedste value-angriber i ligaen, ingen tegn på exit.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Rogers</span><span class="club">Chelsea</span><span class="note">169 point som Villas gennembrudsspiller — nu britisk rekordsignering hos Xabi Alonsos Chelsea.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">David Raya</span><span class="club">Arsenal</span><span class="note">Guldhandske, 162 point, bedste forsvar i ligaen foran sig.</span></div>
         </div>
       </div>
 
       <div class="tier-row">
         <div class="tier-num">4</div>
         <div class="tier-players">
-          <div class="p-card"><span class="pos">MID</span><span class="name">Elliot Anderson</span><span class="club">Man City</span><span class="note">Toppede DefCon med 52 point for Forest — nu i stærkere City-hold under Maresca.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">James Tarkowski</span><span class="club">Everton</span><span class="note">170 point, DefCon-topscorer 2 sæsoner i træk.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">João Pedro</span><span class="club">Chelsea</span><span class="note">177 point, men mere konkurrence i angrebet efter Rogers-signing.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Morgan Gibbs-White</span><span class="club">Nott'm Forest</span><span class="note">188 point til lav prioritet — kæmpe value, let regressionsrisiko.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Ollie Watkins</span><span class="club">Aston Villa</span><span class="note">167 point, pålidelig — CL-deltagelse kan give lidt rotation.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Matz Sels</span><span class="club">Nott'm Forest</span><span class="note">105 point bag et solidt Forest-forsvar.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Elliot Anderson</span><span class="club">Man City</span><span class="note">Toppede DefCon med 52 point for Forest — nu i stærkere City-hold under Maresca.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">James Tarkowski</span><span class="club">Everton</span><span class="note">170 point, DefCon-topscorer 2 sæsoner i træk.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">João Pedro</span><span class="club">Chelsea</span><span class="note">177 point, men mere konkurrence i angrebet efter Rogers-signing.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Gibbs-White</span><span class="club">Nott'm Forest</span><span class="note">188 point til lav prioritet — kæmpe value, let regressionsrisiko.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Ollie Watkins</span><span class="club">Aston Villa</span><span class="note">167 point, pålidelig — CL-deltagelse kan give lidt rotation.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Matz Sels</span><span class="club">Nott'm Forest</span><span class="note">105 point bag et solidt Forest-forsvar.</span></div>
         </div>
       </div>
 
       <div class="tier-row">
         <div class="tier-num">5</div>
         <div class="tier-players">
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Maxence Lacroix</span><span class="club">Chelsea</span><span class="note">Ny signing, en af kun to DEF i DefCon-top 5 to sæsoner i træk. Differential.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Jeremy Jacquet</span><span class="club">Liverpool</span><span class="note">Ny signing (vandt kapløb mod Chelsea). Iraola-effekten kan gøre ham billig og god.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Viktor Gyökeres</span><span class="club">Arsenal</span><span class="note">Talentfuld, men rotationsrisiko mod Jesus/Havertz — boom/bust, ikke sikkert valg.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Emiliano Martínez</span><span class="club">Aston Villa</span><span class="note">120 point, stabil.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Evanilson</span><span class="club">Bournemouth</span><span class="note">115 point, men Iraola (som løftede holdets defensive spil) er rejst til Liverpool — usikker system-effekt.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Caoimhín Kelleher</span><span class="club">Brentford</span><span class="note">143 point, høj redningsvolumen.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Maxence Lacroix</span><span class="club">Chelsea</span><span class="note">Ny signing, en af kun to DEF i DefCon-top 5 to sæsoner i træk. Differential.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Jeremy Jacquet</span><span class="club">Liverpool</span><span class="note">Ny signing (vandt kapløb mod Chelsea). Iraola-effekten kan gøre ham billig og god.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Viktor Gyökeres</span><span class="club">Arsenal</span><span class="note">Talentfuld, men rotationsrisiko mod Jesus/Havertz — boom/bust, ikke sikkert valg.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Emiliano Martínez</span><span class="club">Aston Villa</span><span class="note">120 point, stabil.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Evanilson</span><span class="club">Bournemouth</span><span class="note">115 point, men Iraola (som løftede holdets defensive spil) er rejst til Liverpool — usikker system-effekt.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Caoimhín Kelleher</span><span class="club">Brentford</span><span class="note">143 point, høj redningsvolumen.</span></div>
         </div>
       </div>
 
-      <div class="trap">
-        <strong>Undgå faldgruberne:</strong> Jarrod Bowen (187 point sidste sæson!) er ikke tilgængelig — West Ham rykkede ned og spiller Championship. Mohamed Salah har forladt Liverpool og har ingen Premier League-klub lige nu (rygter om Tyrkiet/Saudi-Arabien) — heller ikke draftbar.
-      </div>
     </div>
 
     <div class="card">
       <h2>Shortlists pr. position</h2>
-      <p class="sub">5-6 navne pr. position — fold ud for detaljer. Brug disse når tier-listen er tømt for din runde.</p>
+      <p class="sub">10 navne pr. position. Brug disse når tier-listen er tømt for din runde.</p>
 
       <details class="pos-list" open>
         <summary>Målmænd <span class="arrow">▾</span></summary>
         <div class="pos-body">
-          <div class="p-card"><span class="pos">GK</span><span class="name">David Raya</span><span class="club">Arsenal</span><span class="note">Elite — 19 clean sheets, guldhandske.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Matz Sels</span><span class="club">Nott'm Forest</span><span class="note">105 point, solidt forsvar bagved.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Emiliano Martínez</span><span class="club">Aston Villa</span><span class="note">120 point, konsistent.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Caoimhín Kelleher</span><span class="club">Brentford</span><span class="note">143 point, mange redninger.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Bart Verbruggen</span><span class="club">Brighton</span><span class="note">130 point, fint sen-runde-valg.</span></div>
-          <div class="p-card"><span class="pos">GK</span><span class="name">Dean Henderson</span><span class="club">Crystal Palace</span><span class="note">131 point, solidt forsvar efter Conference League-finalen.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">David Raya</span><span class="club">Arsenal</span><span class="note">Elite — 19 clean sheets, guldhandske.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Matz Sels</span><span class="club">Nott'm Forest</span><span class="note">105 point, solidt forsvar bagved.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Emiliano Martínez</span><span class="club">Aston Villa</span><span class="note">120 point, konsistent.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Caoimhín Kelleher</span><span class="club">Brentford</span><span class="note">143 point, mange redninger.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Bart Verbruggen</span><span class="club">Brighton</span><span class="note">130 point, fint sen-runde-valg.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Dean Henderson</span><span class="club">Crystal Palace</span><span class="note">131 point, solidt forsvar efter Conference League-finalen.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Robin Roefs</span><span class="club">Sunderland</span><span class="note">136 point, fundament for Sunderlands overraskende oprykkersæson.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Jordan Pickford</span><span class="club">Everton</span><span class="note">135 point, Englands faste mand — år efter år konsistent.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Gianluigi Donnarumma</span><span class="club">Man City</span><span class="note">135 point, storsignering i Marescas nye City-projekt.</span></div>
+          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Đorđe Petrović</span><span class="club">Bournemouth</span><span class="note">124 point, men Bournemouth mister Iraola-effekten i år.</span></div>
         </div>
       </details>
 
-      <details class="pos-list">
+      <details class="pos-list" open>
         <summary>Forsvar <span class="arrow">▾</span></summary>
         <div class="pos-body">
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Gabriel</span><span class="club">Arsenal</span><span class="note">209 point — topvalg.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Virgil van Dijk</span><span class="club">Liverpool</span><span class="note">175 point, potentielt DefCon-boost under Iraola.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Marc Guéhi</span><span class="club">Man City</span><span class="note">179 point.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">James Tarkowski</span><span class="club">Everton</span><span class="note">170 point, DefCon-maskine.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Maxence Lacroix</span><span class="club">Chelsea</span><span class="note">Ny hos Chelsea — differential.</span></div>
-          <div class="p-card"><span class="pos">DEF</span><span class="name">Jeremy Jacquet</span><span class="club">Liverpool</span><span class="note">Ny signing, Iraola-effekt.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Gabriel</span><span class="club">Arsenal</span><span class="note">209 point — topvalg.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Virgil van Dijk</span><span class="club">Liverpool</span><span class="note">175 point, potentielt DefCon-boost under Iraola.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Marc Guéhi</span><span class="club">Man City</span><span class="note">179 point.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">James Tarkowski</span><span class="club">Everton</span><span class="note">170 point, DefCon-maskine.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Maxence Lacroix</span><span class="club">Chelsea</span><span class="note">Ny hos Chelsea — differential.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Jeremy Jacquet</span><span class="club">Liverpool</span><span class="note">Ny signing, Iraola-effekt.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Marcos Senesi</span><span class="club">Spurs</span><span class="note">175 point, skiftede fra Bournemouth i sommer — DefCon-tallene fra Iraola-æraen flytter ikke automatisk med.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Adrien Truffert</span><span class="club">Bournemouth</span><span class="note">165 point, men usikkert niveau uden Iraola.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Nico O'Reilly</span><span class="club">Man City</span><span class="note">160 point, alsidig del af Marescas forsvar.</span></div>
+          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Matheus Nunes</span><span class="club">Man City</span><span class="note">154 point, solid dybde/rotation.</span></div>
         </div>
       </details>
 
-      <details class="pos-list">
+      <details class="pos-list" open>
         <summary>Midtbane <span class="arrow">▾</span></summary>
         <div class="pos-body">
-          <div class="p-card"><span class="pos">MID</span><span class="name">Bruno Fernandes</span><span class="club">Man Utd</span><span class="note">235 point — topvalg.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Semenyo</span><span class="club">Man City</span><span class="note">202 point.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Declan Rice</span><span class="club">Arsenal</span><span class="note">184 point + DefCon.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Morgan Rogers</span><span class="club">Chelsea</span><span class="note">Ny hos Chelsea, gennembrudsspiller.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Elliot Anderson</span><span class="club">Man City</span><span class="note">DefCon-konge, nu hos City.</span></div>
-          <div class="p-card"><span class="pos">MID</span><span class="name">Morgan Gibbs-White</span><span class="club">Nott'm Forest</span><span class="note">188 point, stor value.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bruno Fernandes</span><span class="club">Man Utd</span><span class="note">235 point — topvalg.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Semenyo</span><span class="club">Man City</span><span class="note">202 point.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Declan Rice</span><span class="club">Arsenal</span><span class="note">184 point + DefCon.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Rogers</span><span class="club">Chelsea</span><span class="note">Ny hos Chelsea, gennembrudsspiller.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Elliot Anderson</span><span class="club">Man City</span><span class="note">DefCon-konge, nu hos City.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Gibbs-White</span><span class="club">Nott'm Forest</span><span class="note">188 point, stor value.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Harry Wilson</span><span class="club">Leeds</span><span class="note">168 point, dødboldspecialist, drev Leeds' angreb efter oprykning.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Dominik Szoboszlai</span><span class="club">Liverpool</span><span class="note">160 point, allerede i god form under Iraola.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bukayo Saka</span><span class="club">Arsenal</span><span class="note">157 point, nailed-on starter med højt gulv-niveau.</span></div>
+          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bruno Guimarães</span><span class="club">Newcastle</span><span class="note">154 point, Newcastles mest stabile aktiv trods klubbens omvæltninger.</span></div>
         </div>
       </details>
 
-      <details class="pos-list">
+      <details class="pos-list" open>
         <summary>Angreb <span class="arrow">▾</span></summary>
         <div class="pos-body">
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Erling Haaland</span><span class="club">Man City</span><span class="note">239 point — topvalg.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Igor Thiago</span><span class="club">Brentford</span><span class="note">181 point, bedste value.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">João Pedro</span><span class="club">Chelsea</span><span class="note">177 point, mere konkurrence nu.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Ollie Watkins</span><span class="club">Aston Villa</span><span class="note">167 point, pålidelig.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Viktor Gyökeres</span><span class="club">Arsenal</span><span class="note">Boom/bust — rotationsrisiko.</span></div>
-          <div class="p-card"><span class="pos">FWD</span><span class="name">Evanilson</span><span class="club">Bournemouth</span><span class="note">115 point, usikker uden Iraola.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Erling Haaland</span><span class="club">Man City</span><span class="note">239 point — topvalg.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Igor Thiago</span><span class="club">Brentford</span><span class="note">181 point, bedste value.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">João Pedro</span><span class="club">Chelsea</span><span class="note">177 point, mere konkurrence nu.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Ollie Watkins</span><span class="club">Aston Villa</span><span class="note">167 point, pålidelig.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Viktor Gyökeres</span><span class="club">Arsenal</span><span class="note">Boom/bust — rotationsrisiko.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Evanilson</span><span class="club">Bournemouth</span><span class="note">115 point, usikker uden Iraola.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Dominic Calvert-Lewin</span><span class="club">Leeds</span><span class="note">142 point, genfandt formen efter oprykning.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Hugo Ekitiké</span><span class="club">Liverpool</span><span class="note">125 point, ny angrebsprofil efter Salah-exit — men achilles-skade lige nu, ukendt returdato.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Jean-Philippe Mateta</span><span class="club">Crystal Palace</span><span class="note">114 point, konsistent target man.</span></div>
+          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Benjamin Šeško</span><span class="club">Man Utd</span><span class="note">111 point, United-storsignering — men skinnebensskade lige nu, 75% spilchance ifølge seneste opdatering.</span></div>
         </div>
       </details>
     </div>
@@ -311,7 +324,6 @@
   <section id="tab-draft" class="panel">
     <div class="card">
       <h2>Live draft-tracker</h2>
-      <p class="sub">Under selve draften: markér spillere som du tager, eller som andre snupper — så ryger de ud af puljen automatisk. Alt gemmes, så du kan lukke og genåbne siden.</p>
 
       <div class="draft-toolbar">
         <input type="text" id="poolSearch" placeholder="🔍 Søg efter spiller eller klub..." oninput="renderPool()" style="flex:1 1 100%;">
@@ -331,7 +343,10 @@
 
       <div id="poolList"></div>
     </div>
+  </section>
 
+  <!-- ============ MIN TRUP ============ -->
+  <section id="tab-squad" class="panel">
     <div class="card">
       <h2>Min trup <span class="slot-count" id="squadCountLabel"></span></h2>
       <p class="sub">Krav: 2 GK · 5 DEF · 5 MID · 3 FWD (15 i alt).</p>
@@ -492,7 +507,7 @@ function renderPool(){
   }
   el.innerHTML = available.map(p=>`
     <div class="pool-item">
-      <span class="pos-tag" style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--pitch-line);padding:3px 7px;border-radius:5px;">${p.pos}</span>
+      <span class="pos pos-${p.pos}">${p.pos}</span>
       <span class="name">${p.name}</span>
       <span class="meta">${p.club}</span>
       <div class="pool-actions">
@@ -543,7 +558,7 @@ function renderSquad(){
     const count = groups[pos].length;
     const limit = SLOT_LIMITS[pos];
     const cls = count>limit ? 'over' : (count===limit ? 'ok' : '');
-    html += `<div class="slot-group"><h3>${pos} <span class="slot-count ${cls}">${count} / ${limit}</span></h3></div>`;
+    html += `<div class="slot-group"><h3><span class="pos pos-${pos}">${pos}</span> <span class="slot-count ${cls}">${count} / ${limit}</span></h3></div>`;
     if(groups[pos].length===0){
       html += `<div class="empty-msg" style="grid-column:1/-1;">Ingen valgt endnu.</div>`;
     } else {
