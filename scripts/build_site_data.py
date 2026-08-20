@@ -289,9 +289,60 @@ def build_management(bootstrap, current_gw, fixture_by_team):
     clubs = get_player_clubs(bootstrap)
     by_id = {p["id"]: p for p in bootstrap["elements"]}
 
+def build_management(bootstrap, current_gw, fixture_by_team, element_status=None):
+    positions = get_player_positions(bootstrap)
+    names = get_player_names(bootstrap)
+    clubs = get_player_clubs(bootstrap)
+    by_id = {p["id"]: p for p in bootstrap["elements"]}
+
     picks = get_entry_gw_picks(MY_ENTRY_ID, current_gw) if current_gw else None
+
     if not picks:
-        return {"available": False, "reason": "Ingen picks-data for denne gameweek endnu."}
+        # Ingen picks sat for kommende gameweek endnu (sker typisk før første deadline er
+        # passeret). Vi kan stadig vise DIN TRUP via draft-ejerskabsdata - det kræver ikke
+        # at du har sat en specifik startopstilling, kun at draften er gennemført.
+        if element_status is None:
+            return {"available": False, "reason": "Ingen picks-data for denne gameweek endnu."}
+        my_squad_ids = [es["element"] for es in element_status if es.get("owner") == MY_ENTRY_ID]
+        if not my_squad_ids:
+            return {"available": False, "reason": "Ingen picks-data for denne gameweek endnu."}
+        squad = []
+        squad_team_ids = set()
+        injury_news = []
+        for pid in my_squad_ids:
+            p = by_id.get(pid)
+            if not p:
+                continue
+            squad_team_ids.add(p["team"])
+            if p["status"] != "a" and p.get("news"):
+                injury_news.append({
+                    "player": names.get(pid, "?"), "club": clubs.get(pid, "?"),
+                    "news": p["news"], "status": p["status"],
+                    "chance": p.get("chance_of_playing_next_round"),
+                })
+            squad.append({
+                "id": pid, "name": names.get(pid, "?"), "club": clubs.get(pid, "?"),
+                "pos": positions.get(pid, "?"), "status": p["status"],
+                "chance": p.get("chance_of_playing_next_round"),
+            })
+        club_counts = {}
+        for entry in squad:
+            club_counts[entry["club"]] = club_counts.get(entry["club"], 0) + 1
+        fixtures_block = []
+        for team_id in squad_team_ids:
+            club_name = TEAM_NAMES.get(team_id, "?")
+            fixtures_block.append({
+                "club": club_name, "count": club_counts.get(club_name, 0),
+                "difficulty": (fixture_by_team or {}).get(team_id, []),
+            })
+        fixtures_block.sort(key=lambda x: x["club"])
+        return {
+            "available": True,
+            "lineup_set": False,  # trup kendt, men ikke en specifik startopstilling endnu
+            "squad": squad,
+            "fixtures": fixtures_block,
+            "injury_news": injury_news,
+        }
 
     starters, bench = [], []
     squad_team_ids = set()
@@ -351,6 +402,7 @@ def build_management(bootstrap, current_gw, fixture_by_team):
 
     return {
         "available": True,
+        "lineup_set": True,
         "starters": starters,
         "bench": bench,
         "suggestions": suggestions,
@@ -488,7 +540,7 @@ def main():
     print("draft-rankings.json skrevet")
 
     # ---- management (kun dig) ----
-    management = build_management(bootstrap, current_gw if season_started else next_event["id"] if next_event else None, fixture_by_team)
+    management = build_management(bootstrap, current_gw if season_started else next_event["id"] if next_event else None, fixture_by_team, element_status)
     management["updated"] = site_data["updated"]
     save_json_file("management.json", management)
     print("management.json skrevet, available=", management.get("available"))
