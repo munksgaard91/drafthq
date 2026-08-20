@@ -3,8 +3,10 @@ Bygger alle datafiler til Fantasy Premier League HQ (den rigtige side, ikke mock
 
   site-data.json       - stilling, rank-historik, GW-resuméer, sæson-highlights, alerts, bænk-tendens
   powerranking.json    - top 25 spillere, formel-baseret score + AI-argumenter
-  draft-rankings.json  - top 25 pr. position (GK/DEF/MID/FWD), samme formel, til redraften i februar
   management.json      - din aktuelle startopstilling, bænk, kampprogram, ombytningsforslag
+
+  (draft-rankings.json genereres IKKE længere - Draft-fanen er midlertidigt deaktiveret
+   i UI'en indtil næste redraft, feb 2027. Se main() for hvor blokken er kommenteret ud.)
 
 Køres af .github/workflows/site-data.yml. Data gemmes og genindlæses mellem kørsler
 (rank-history.json), så vi kan bygge historik op over tid uden at have en database.
@@ -529,15 +531,10 @@ def main():
     save_json_file("powerranking.json", {"updated": site_data["updated"], "players": pr_list})
     print(f"powerranking.json skrevet ({len(pr_list)} spillere)")
 
-    # ---- draft rankings (pr. position) ----
-    draft_data = {"updated": site_data["updated"], "positions": {}}
-    for pos in ("GK", "DEF", "MID", "FWD"):
-        lst = build_ranked_list(bootstrap, fixture_by_team, season_started, position_filter=pos, top_n=25)
-        lst = add_ai_arguments(lst, f"{pos}-spillere i Fantasy Premier League", fixture_by_team)
-        draft_data["positions"][pos] = lst
-        print(f"  draft/{pos}: {len(lst)} spillere")
-    save_json_file("draft-rankings.json", draft_data)
-    print("draft-rankings.json skrevet")
+    # ---- draft rankings: SPRINGES OVER ----
+    # Draft-fanen er deaktiveret i UI'en indtil næste redraft (feb 2027) - ingen grund
+    # til at bruge 4 Gemini-kald pr. kørsel på data ingen ser. Genaktivér denne blok
+    # (og fjern deaktiveringen i index.html) når redraften nærmer sig.
 
     # ---- management (kun dig) ----
     management = build_management(bootstrap, current_gw if season_started else next_event["id"] if next_event else None, fixture_by_team, element_status)
