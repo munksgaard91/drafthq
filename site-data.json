@@ -1,0 +1,85 @@
+{
+  "updated": "2026-08-20T18:17:34Z",
+  "current_gw": 0,
+  "season_started": false,
+  "next_deadline": "2026-08-21T17:30:00Z",
+  "standings": [
+    {
+      "league_entry": 1510,
+      "name": "HaCunha Mateta",
+      "total": 0,
+      "rank": 1,
+      "trend": null
+    },
+    {
+      "league_entry": 2539,
+      "name": "Bottlers Anonymous",
+      "total": 0,
+      "rank": 2,
+      "trend": null
+    },
+    {
+      "league_entry": 17813,
+      "name": "Kop of Jensen",
+      "total": 0,
+      "rank": 3,
+      "trend": null
+    },
+    {
+      "league_entry": 48956,
+      "name": "Mainoo Character FC",
+      "total": 0,
+      "rank": 4,
+      "trend": null
+    },
+    {
+      "league_entry": 127144,
+      "name": "HernDog IF",
+      "total": 0,
+      "rank": 5,
+      "trend": null
+    }
+  ],
+  "point_gap": 0,
+  "alerts": [],
+  "gw_summaries": [],
+  "highlights": {
+    "highest_gw_score": null,
+    "longest_streak": null
+  },
+  "bench_trend": {},
+  "transactions": [
+    {
+      "gw": 1,
+      "entry_name": "Mainoo Character FC",
+      "kind": "Waiver",
+      "player_in": "Enzo Le Fée",
+      "player_out": "Iliman Ndiaye",
+      "added": "2026-08-18T18:46:39.360936Z"
+    },
+    {
+      "gw": 1,
+      "entry_name": "HernDog IF",
+      "kind": "Waiver",
+      "player_in": "Mathys Tel",
+      "player_out": "Diego Gómez Amarilla",
+      "added": "2026-08-18T18:52:29.457213Z"
+    },
+    {
+      "gw": 1,
+      "entry_name": "HaCunha Mateta",
+      "kind": "Waiver",
+      "player_in": "Lewis Hall",
+      "player_out": "Marcos Senesi Barón",
+      "added": "2026-08-18T18:56:06.736236Z"
+    },
+    {
+      "gw": 1,
+      "entry_name": "Bottlers Anonymous",
+      "kind": "Waiver",
+      "player_in": "Bruno Guimarães Rodriguez Moura",
+      "player_out": "Mikel Merino Zazón",
+      "added": "2026-08-18T18:56:45.549244Z"
+    }
+  ]
+}
