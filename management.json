@@ -1,5 +1,237 @@
 {
-  "available": false,
-  "reason": "Ingen picks-data for denne gameweek endnu.",
-  "updated": "2026-08-20T18:17:34Z"
+  "available": true,
+  "lineup_set": false,
+  "squad": [
+    {
+      "id": 229,
+      "name": "James Tarkowski",
+      "club": "Everton",
+      "pos": "DEF",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 426,
+      "name": "Bruno Borges Fernandes",
+      "club": "Man Utd",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 1,
+      "name": "David Raya Martín",
+      "club": "Arsenal",
+      "pos": "GK",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 10,
+      "name": "Benjamin White",
+      "club": "Arsenal",
+      "pos": "DEF",
+      "status": "a",
+      "chance": 100
+    },
+    {
+      "id": 82,
+      "name": "Caoimhín Kelleher",
+      "club": "Brentford",
+      "pos": "GK",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 388,
+      "name": "Marc Guéhi",
+      "club": "Man City",
+      "pos": "DEF",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 480,
+      "name": "Morgan Gibbs-White",
+      "club": "Nott'm Forest",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 12,
+      "name": "Bukayo Saka",
+      "club": "Arsenal",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 154,
+      "name": "Cole Palmer",
+      "club": "Chelsea",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 399,
+      "name": "Rayan Cherki",
+      "club": "Man City",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 463,
+      "name": "Nick Woltemade",
+      "club": "Newcastle",
+      "pos": "FWD",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 439,
+      "name": "Benjamin Sesko",
+      "club": "Man Utd",
+      "pos": "FWD",
+      "status": "d",
+      "chance": 75
+    },
+    {
+      "id": 449,
+      "name": "Lewis Hall",
+      "club": "Newcastle",
+      "pos": "DEF",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 61,
+      "name": "Adrien Truffert",
+      "club": "Bournemouth",
+      "pos": "DEF",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 106,
+      "name": "Igor Thiago Nascimento Rodrigues",
+      "club": "Brentford",
+      "pos": "FWD",
+      "status": "a",
+      "chance": null
+    }
+  ],
+  "fixtures": [
+    {
+      "club": "Arsenal",
+      "count": 3,
+      "difficulty": [
+        2,
+        4,
+        4,
+        3,
+        3
+      ]
+    },
+    {
+      "club": "Bournemouth",
+      "count": 1,
+      "difficulty": [
+        5,
+        3,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "club": "Brentford",
+      "count": 2,
+      "difficulty": [
+        3,
+        3,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "club": "Chelsea",
+      "count": 1,
+      "difficulty": [
+        3,
+        2,
+        5,
+        2,
+        3
+      ]
+    },
+    {
+      "club": "Everton",
+      "count": 1,
+      "difficulty": [
+        3,
+        3,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "club": "Man City",
+      "count": 2,
+      "difficulty": [
+        3,
+        3,
+        2,
+        4,
+        2
+      ]
+    },
+    {
+      "club": "Man Utd",
+      "count": 2,
+      "difficulty": [
+        2,
+        2,
+        3,
+        4,
+        3
+      ]
+    },
+    {
+      "club": "Newcastle",
+      "count": 2,
+      "difficulty": [
+        4,
+        3,
+        3,
+        3,
+        2
+      ]
+    },
+    {
+      "club": "Nott'm Forest",
+      "count": 1,
+      "difficulty": [
+        2,
+        4,
+        3,
+        4,
+        2
+      ]
+    }
+  ],
+  "injury_news": [
+    {
+      "player": "Benjamin Sesko",
+      "club": "Man Utd",
+      "news": "Shin injury - 75% chance of playing",
+      "status": "d",
+      "chance": 75
+    }
+  ],
+  "updated": "2026-08-20T18:54:17Z"
 }
