@@ -3,589 +3,750 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FPL Draft HQ 2026/27</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%232E0433%22/%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2229%22%20fill%3D%22none%22%20stroke%3D%22%232ECC81%22%20stroke-width%3D%222.5%22/%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2215%22%20fill%3D%22%23FFFFFF%22/%3E%0A%3Cpolygon%20points%3D%2232%2C22%2039%2C27.5%2036.3%2C35.8%2027.7%2C35.8%2025%2C27.5%22%20fill%3D%22%232E0433%22/%3E%0A%3Cpath%20d%3D%22M32%2022%20L32%2017%20M39%2027.5%20L45.5%2024%20M36.3%2035.8%20L39.5%2043%20M27.7%2035.8%20L24.5%2043%20M25%2027.5%20L18.5%2024%22%20stroke%3D%22%232E0433%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E">
+<title>Fantasy Premier League HQ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <style>
+
   :root{
-    --pitch-dark:#2E0433;
-    --pitch:#411241;
-    --pitch-line:#54294F;
-    --chalk:#FFFFFF;
-    --chalk-dim:#D8BFD3;
-    --gold:#2ECC81;
-    --gold-dim:#22995F;
-    --coral:#DE5A83;
-    --ink:#241129;
-    --muted:#A88FA4;
-    --cyan:#29B6D8;
-    --pos-gk:#29B6D8;
-    --pos-def:#2ECC81;
-    --pos-mid:#DE5A83;
-    --pos-fwd:#D9A441;
+    --bg:#F7F7F5;
+    --surface:#FFFFFF;
+    --border:#E4E4E0;
+    --text:#18181B;
+    --text-dim:#6B6B66;
+    --text-faint:#9C9C96;
+    --accent:#14432A;
+    --accent-tint:#E7EFE9;
+    --danger:#A8362E;
+    --danger-tint:#FBEBEA;
+    --warning:#8A5A0B;
+    --warning-tint:#FAF0DC;
+    --success:#1F6E43;
+    --success-tint:#E8F3EC;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0;
-    background:var(--pitch-dark);
-    color:var(--chalk);
-    font-family:'Inter',sans-serif;
-    min-height:100vh;
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 80px;}
+  .num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 100px;}
 
-  header.top{
-    display:flex;flex-direction:column;gap:4px;margin-bottom:22px;
-    border-bottom:1px solid var(--pitch-line);padding-bottom:18px;
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:20px;margin-bottom:24px;border-bottom:1px solid var(--border);
   }
-  header.top h1{
-    font-family:'Bebas Neue',sans-serif;font-size:72px;letter-spacing:.02em;
-    margin:2px 0 0;line-height:1;color:var(--chalk);
+  .wordmark{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;letter-spacing:-0.01em;}
+  .refresh-btn{
+    display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text);font-weight:500;
+    background:var(--surface);border:1px solid var(--border-strong,#D5D5D0);border-radius:7px;padding:8px 14px;cursor:pointer;
   }
-  header.top p{margin:6px 0 0;color:var(--muted);font-size:14px;}
+  .refresh-btn:disabled{opacity:.7;cursor:default;}
+  .refresh-btn .spin{display:inline-block;animation:spin 0.8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
 
-  .header-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
-  .status-pill{
-    display:flex;align-items:center;gap:6px;
-    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
-    border:1px solid var(--pitch-line);border-radius:100px;padding:6px 12px;
-    white-space:nowrap;margin-top:2px;
+  nav{display:flex;gap:4px;margin-bottom:28px;overflow-x:auto;}
+  nav button{
+    font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;color:var(--text-dim);
+    background:none;border:none;padding:8px 14px;border-radius:100px;cursor:pointer;white-space:nowrap;
   }
-  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:0 0 auto;}
-  .status-dot.live{background:var(--gold);animation:statusPulse 2s infinite;}
-  .status-dot.offline{background:var(--coral);}
-  @keyframes statusPulse{
-    0%{box-shadow:0 0 0 0 rgba(46,204,129,.5);}
-    70%{box-shadow:0 0 0 6px rgba(46,204,129,0);}
-    100%{box-shadow:0 0 0 0 rgba(46,204,129,0);}
-  }
-
-  nav.tabs{display:flex;gap:6px;margin-bottom:26px;flex-wrap:wrap;}
-  nav.tabs button{
-    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;
-    background:transparent;border:1px solid var(--pitch-line);color:var(--muted);
-    padding:9px 16px;border-radius:100px;cursor:pointer;transition:.15s;
-  }
-  nav.tabs button:hover{border-color:var(--gold-dim);color:var(--chalk);}
-  nav.tabs button.active{background:var(--gold);border-color:var(--gold);color:#FFFFFF;}
+  nav button.active{background:var(--text);color:#fff;}
 
   .panel{display:none;}
-  .panel.active{display:block;animation:fade .25s ease;}
-  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+  .panel.active{display:block;}
 
-  .card{
-    background:var(--pitch);border:1px solid var(--pitch-line);border-radius:14px;
-    padding:20px 22px;margin-bottom:18px;
-  }
-  .card h2{
-    font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;
-    margin:0 0 4px;color:var(--chalk);
-  }
-  .card .sub{color:var(--muted);font-size:13.5px;margin:0 0 16px;}
+  .label{font-size:12.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.04em;margin:0 0 10px;}
 
-  /* card sub-elements */
+  .alert{
+    display:block;width:100%;text-align:left;font-family:'Inter';
+    padding:14px 16px;background:var(--danger-tint);
+    border:1px solid #EBC9C6;border-radius:10px;margin-bottom:28px;cursor:pointer;
+  }
+  .alert:hover{border-color:var(--danger);}
+  .alert h3{font-size:13.5px;font-weight:600;color:var(--danger);margin:0 0 8px;}
+  .alert ul{margin:0;padding:0;list-style:none;}
+  .alert li{display:flex;gap:9px;font-size:13px;color:var(--danger);line-height:1.5;opacity:.9;margin-bottom:5px;}
+  .alert li:last-child{margin-bottom:0;}
+  .alert li .dot{width:5px;height:5px;border-radius:50%;background:var(--danger);margin-top:6px;flex:none;}
 
-  /* Tier board */
-  .tier-row{display:flex;gap:16px;margin-bottom:14px;align-items:flex-start;}
-  .tier-num{
-    font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold-dim);
-    width:44px;text-align:center;line-height:1;flex:0 0 44px;padding-top:4px;
-  }
-  .tier-players{flex:1;display:flex;flex-direction:column;gap:8px;}
-  .p-card{
-    display:flex;gap:10px;align-items:center;background:var(--pitch-dark);
-    border:1px solid var(--pitch-line);border-radius:10px;padding:10px 12px;
-  }
-  .pos{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;
-    padding:3px 7px;border-radius:5px;flex:0 0 auto;
-  }
-  .p-card .name{font-weight:600;font-size:14.5px;flex:0 0 auto;}
-  .p-card .club{color:var(--muted);font-size:13px;flex:0 0 auto;}
-  .p-card .note{color:var(--chalk-dim);font-size:12.5px;flex:1 1 160px;min-width:160px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+  .row{display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid var(--border);}
+  .row:last-child{border-bottom:none;}
+  .row .rank{width:18px;font-size:12.5px;color:var(--text-faint);}
+  .row .rank.gold{color:#9C7A1E;}
+  .row .name{flex:1;font-size:14px;font-weight:500;}
+  .row .trend{font-size:11.5px;font-weight:600;margin-left:8px;}
+  .row .trend.up{color:var(--success);}
+  .row .trend.down{color:var(--danger);}
+  .row .trend.same{color:var(--text-faint);}
+  .row .pts{font-size:13.5px;color:var(--text-dim);}
 
-  /* Position accent colors — shared by static cheatsheet badges and the live draft pool */
-  .pos-GK{background:var(--pos-gk);color:#FFFFFF;}
-  .pos-DEF{background:var(--pos-def);color:#FFFFFF;}
-  .pos-MID{background:var(--pos-mid);color:#FFFFFF;}
-  .pos-FWD{background:var(--pos-fwd);color:#FFFFFF;}
+  section{margin-bottom:32px;}
 
-  /* shortlist accordions */
-  details.pos-list{border:1px solid var(--pitch-line);border-radius:10px;margin-bottom:10px;overflow:hidden;}
-  details.pos-list summary{
-    cursor:pointer;list-style:none;padding:13px 16px;font-weight:700;font-size:14.5px;
-    display:flex;justify-content:space-between;background:var(--pitch-dark);
-  }
-  details.pos-list summary::-webkit-details-marker{display:none;}
-  details.pos-list summary .arrow{color:var(--gold);}
-  details.pos-list .pos-body{padding:4px 16px 14px;}
+  .chart-box{position:relative;height:190px;margin-bottom:8px;}
+  .legend{display:flex;gap:14px;font-size:12px;color:var(--text-dim);margin-bottom:24px;}
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .legend i{width:8px;height:8px;border-radius:50%;display:inline-block;}
 
-  /* Live draft tab */
-  .draft-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
-  .draft-toolbar input, .draft-toolbar select{
-    background:var(--pitch-dark);border:1px solid var(--pitch-line);color:var(--chalk);
-    padding:8px 10px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13.5px;
-  }
-  .draft-toolbar input[type=text]{flex:1 1 200px;}
-  .btn{
-    font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;
-    border:none;border-radius:8px;padding:8px 14px;transition:.15s;
-  }
-  .btn-gold{background:var(--gold);color:#FFFFFF;}
-  .btn-gold:hover{background:#41DD92;}
-  .btn-ghost{background:transparent;border:1px solid var(--pitch-line);color:var(--chalk-dim);}
-  .btn-ghost:hover{border-color:var(--coral);color:var(--coral);}
-  .btn-mini{padding:5px 9px;font-size:12px;border-radius:6px;}
+  .feed-entry{padding:16px 0;border-bottom:1px solid var(--border);}
+  .feed-entry:last-child{border-bottom:none;}
+  .feed-entry .meta{display:flex;justify-content:space-between;margin-bottom:6px;}
+  .feed-entry .gw{font-size:13px;font-weight:600;}
+  .feed-entry .date{font-size:12px;color:var(--text-faint);}
+  .feed-entry p{font-size:13.5px;color:var(--text-dim);line-height:1.65;margin:0 0 10px;}
+  .feed-entry p:last-child{margin-bottom:0;}
+  .feed-entry b{color:var(--text);font-weight:600;}
 
-  .pool-item{
-    display:flex;gap:10px;align-items:center;background:var(--pitch-dark);border:1px solid var(--pitch-line);
-    border-radius:9px;padding:9px 11px;margin-bottom:7px;
-  }
-  .pool-item .name{font-weight:600;font-size:14px;flex:0 0 auto;}
-  .pool-item .meta{color:var(--muted);font-size:12.5px;flex:1;}
-  .pool-actions{display:flex;gap:6px;margin-left:auto;}
+  .links{display:flex;gap:20px;padding-top:8px;}
+  .links a{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--accent);text-decoration:none;}
 
-  .squad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:6px;}
-  .slot-group h3{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--gold);margin:0 0 8px;
+  .pr-row{padding:7px 15px;border-bottom:1px solid var(--border);min-height:74px;display:flex;align-items:center;gap:14px;}
+  .pr-main{flex:1;min-width:0;}
+  .pr-score-box{
+    flex:none;width:54px;height:54px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
   }
-  .slot-group{grid-column:1/-1;margin-bottom:6px;}
-  .slot-count{color:var(--muted);font-weight:400;}
-  .slot-count.ok{color:var(--gold);}
-  .slot-count.over{color:var(--coral);}
+  .pr-score-box .num{font-size:20px;font-weight:600;text-shadow:0 0 1px rgba(0,0,0,.55),0 0 4px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.35);}
+  .pr-row:last-child{border-bottom:none;}
+  .pr-top{display:flex;align-items:center;gap:10px;margin-bottom:3px;}
+  .pr-top .rank{width:18px;font-size:12px;color:var(--text-faint);}
+  .pr-top .name{font-weight:500;font-size:13.5px;}
+  .pr-top .club{font-size:11.5px;color:var(--text-faint);margin-left:2px;}
+  .pr-top .trend{font-size:11px;font-weight:600;}
+  .pr-top .trend.up{color:var(--success);}
+  .pr-top .trend.down{color:var(--danger);}
+  .pr-top .new-tag{font-size:10px;font-weight:600;color:#fff;background:#3178C6;padding:1px 6px;border-radius:100px;}
+  .pr-arg{font-size:11.5px;color:var(--text-dim);line-height:1.4;padding-left:28px;margin:0;}
 
-  .empty-msg{color:var(--muted);font-size:13.5px;font-style:italic;padding:10px 0;}
+  .news-cat{margin-bottom:24px;}
+  .news-cat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+  .news-cat-title{font-size:12.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.04em;}
+  .me-toggle{font-family:'Inter';font-size:11.5px;font-weight:500;color:var(--text-dim);background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:3px 10px;cursor:pointer;}
+  .me-toggle.on{background:var(--text);color:#fff;border-color:var(--text);}
 
-  @media (max-width:640px){
-    header.top h1{font-size:48px;}
+  .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:5px;display:inline-block;}
+  .tag.injury{background:var(--danger-tint);color:var(--danger);}
+  .tag.rumor{background:var(--warning-tint);color:var(--warning);}
+  .tag.transfer{background:var(--success-tint);color:var(--success);}
+
+  .news-item{padding:13px 0;border-bottom:1px solid var(--border);min-height:70px;}
+  .news-item:last-child{border-bottom:none;}
+  .news-item .top{display:flex;align-items:center;gap:8px;margin-bottom:5px;justify-content:flex-end;}
+  .news-item .when{font-size:11.5px;color:var(--text-faint);margin-left:auto;}
+  .news-item p{font-size:13px;color:var(--text-dim);margin:0;line-height:1.55;}
+  .news-item .who{font-weight:500;color:var(--text);}
+
+  .sugg{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+  .sugg .move{font-size:14.5px;font-weight:600;margin-bottom:6px;}
+  .sugg .move .arrow{color:var(--text-faint);font-weight:400;margin:0 6px;}
+  .sugg .type{font-size:11px;font-weight:600;color:var(--text-dim);background:var(--bg);border:1px solid var(--border);padding:2px 8px;border-radius:5px;margin-left:8px;vertical-align:1px;}
+  .sugg p{font-size:12.5px;color:var(--text-dim);margin:0;line-height:1.6;}
+
+  .hist-row{padding:11px 15px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:baseline;}
+  .hist-row:last-child{border-bottom:none;}
+  .hist-row .gwtag{font-size:11.5px;color:var(--text-faint);width:34px;flex:none;}
+  .hist-row .txt{font-size:13px;color:var(--text-dim);}
+  .hist-row .txt b{color:var(--text);font-weight:500;}
+
+  .empty-state{padding:28px 16px;text-align:center;}
+  .empty-state p{font-size:13px;color:var(--text-faint);margin:0;}
+  .empty-state .sub{font-size:12px;color:var(--text-faint);margin-top:4px;opacity:.8;}
+  .fix-row{display:flex;align-items:center;gap:10px;padding:11px 15px;border-bottom:1px solid var(--border);}
+  .fix-row:last-child{border-bottom:none;}
+  .fix-row .club{width:110px;flex:none;display:flex;flex-direction:column;gap:2px;}
+  .fix-row .cn{font-size:13px;font-weight:500;}
+  .fix-row .cc{font-size:11px;color:var(--text-faint);}
+  .fix-cells{display:flex;gap:5px;}
+  .fix-cell{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;}
+  .fix-1{background:#DCEEE1;color:#1F6E43;}
+  .fix-2{background:#EDF5E9;color:#3D7A4E;}
+  .fix-3{background:#F1F1EC;color:#6B6B66;}
+  .fix-4{background:#FBE8DD;color:#A05A24;}
+  .fix-5{background:#FBE4E2;color:#A8362E;}
+  .fix-labels{display:flex;align-items:center;gap:10px;padding:14px 15px 8px;}
+  .fix-labels .spacer{width:110px;flex:none;}
+  .fix-labels .fix-cells span{width:26px;text-align:center;font-size:10.5px;color:var(--text-faint);}
+
+  .hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .hl-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 12px;}
+  .hl-box .v{font-size:16px;font-weight:600;}
+  .hl-box .l{font-size:11.5px;color:var(--text-faint);margin-top:3px;}
+
+  .bench-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:center;justify-content:space-between;}
+  .bench-box .v{font-size:22px;font-weight:600;}
+  .bench-box .l{font-size:12.5px;color:var(--text-dim);margin-top:2px;}
+  .am-btn{
+    display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text);font-weight:500;
+    background:var(--surface);border:1px solid var(--border-strong,#D5D5D0);border-radius:7px;padding:8px 14px;cursor:pointer;
   }
+  .am-btn span{color:var(--accent);}
+
+  .am-overlay{position:fixed;inset:0;background:rgba(20,20,18,.25);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+  .am-overlay.open{opacity:1;pointer-events:auto;}
+  .am-drawer{
+    position:fixed;top:0;right:0;bottom:0;width:400px;max-width:92vw;background:var(--surface);
+    z-index:101;box-shadow:-2px 0 24px rgba(0,0,0,.08);transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .am-drawer.open{transform:translateX(0);}
+  .am-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);}
+  .am-head span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;}
+  .am-close{background:none;border:none;font-size:18px;color:var(--text-faint);cursor:pointer;line-height:1;}
+  .chat-box{background:var(--surface);display:flex;flex-direction:column;flex:1;min-height:0;}
+  .chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+  .msg{max-width:78%;padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
+  .msg.ai{background:var(--bg);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;}
+  .msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+  .chat-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 12px;}
+  .chat-chip{font-family:'Inter';font-size:12px;color:var(--text-dim);background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:5px 11px;cursor:pointer;}
+  .chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);}
+  .chat-input-row input{flex:1;border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-family:'Inter';font-size:13px;background:var(--bg);color:var(--text);}
+  .chat-input-row input:focus{outline:none;border-color:var(--accent);}
+  .chat-send{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:0 16px;font-family:'Inter';font-size:13px;font-weight:500;cursor:pointer;}
+  .chat-chip:disabled,.chat-send:disabled,.chat-input-row input:disabled{opacity:.45;cursor:not-allowed;}
+  .lineup-row{display:flex;align-items:center;gap:10px;padding:9px 15px;border-bottom:1px solid var(--border);}
+  .lineup-row:last-child{border-bottom:none;}
+  .lineup-pos{font-size:10.5px;font-weight:600;color:var(--text-faint);width:30px;flex:none;}
+  .lineup-name{font-size:13.5px;font-weight:500;}
+  .lineup-club{font-size:12px;color:var(--text-faint);margin-left:4px;}
+  .lineup-flag{margin-left:auto;font-size:11px;color:var(--danger);font-weight:600;}
+  .type.swap{background:var(--warning-tint);color:var(--warning);}
+  .pitch{
+    position:relative;background:linear-gradient(180deg,#EEF4F0 0%,#E5EDE7 100%);
+    border:1px solid var(--border);border-radius:14px;height:440px;overflow:hidden;margin-bottom:12px;
+  }
+  .pitch .pline{position:absolute;left:6%;right:6%;top:50%;border-top:1px dashed rgba(20,67,42,.22);}
+  .pitch .pcircle{position:absolute;left:50%;top:50%;width:84px;height:84px;border:1px dashed rgba(20,67,42,.22);border-radius:50%;transform:translate(-50%,-50%);}
+  .pchip{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .pchip .dot{position:relative;width:36px;height:36px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--accent);}
+  .pchip .flagdot{position:absolute;top:-2px;right:-2px;width:12px;height:12px;background:var(--danger);border-radius:50%;border:2px solid var(--surface);}
+  .pchip .pname{font-size:10.5px;font-weight:600;color:var(--text);background:rgba(255,255,255,.88);padding:1px 7px;border-radius:5px;white-space:nowrap;}
+  .pchip .pclub{font-size:9px;color:var(--text-faint);white-space:nowrap;}
+
+  .bench-strip{display:flex;flex-wrap:wrap;gap:8px;}
+  .bchip{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:6px 12px 6px 6px;}
+  .bchip .bpos{font-size:9.5px;font-weight:600;color:var(--text-faint);background:var(--bg);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
+  .bchip .bname{font-size:12.5px;font-weight:500;}
+  .bchip .bclub{font-size:11px;color:var(--text-faint);}
+  .pos-tabs{display:flex;gap:6px;margin-bottom:16px;}
+  .pos-tabs button{
+    font-family:'Inter';font-size:12.5px;font-weight:500;padding:6px 13px;border-radius:100px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;
+  }
+  .pos-tabs button.on{background:var(--accent-tint);color:var(--accent);border-color:var(--accent-tint);}
+  #pageLoader{
+    position:fixed;inset:0;background:var(--bg);z-index:999;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+    transition:opacity .4s ease;
+  }
+  #pageLoader .lw{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;}
+  #pageLoader .track{width:150px;height:3px;background:var(--border);border-radius:100px;overflow:hidden;}
+  #pageLoader .bar{height:100%;width:0%;background:var(--accent);border-radius:100px;transition:width .7s cubic-bezier(.4,0,.2,1);}
+  body.loaded #pageLoader{opacity:0;pointer-events:none;}
+
 </style>
 </head>
 <body>
+<div id="pageLoader">
+  <span class="lw">Fantasy Premier League HQ</span>
+  <div class="track"><div class="bar" id="loaderBar"></div></div>
+</div>
 <div class="wrap">
 
-  <header class="top">
-    <div class="header-row">
-      <div>
-        <h1>Draft HQ</h1>
-      </div>
-      <div class="status-pill" id="statusPill" title="Viser om data.json (den auto-opdaterede spillerdata) kunne hentes">
-        <span class="status-dot" id="statusDot"></span>
-        <span id="statusText">—</span>
-      </div>
+  <header>
+    <span class="wordmark">Fantasy Premier League HQ</span>
+    <div style="display:flex;gap:8px;">
+      <button class="am-btn" id="amBtn"><span>✦</span> Assistent Manager</button>
+      <button class="refresh-btn" id="refreshBtn"><span id="refreshIcon">↻</span> <span id="refreshLabel">Opdatér</span></button>
     </div>
   </header>
 
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="cheat">Cheatsheet</button>
-    <button class="tab-btn" data-tab="draft">Live draft</button>
-    <button class="tab-btn" data-tab="squad">Min trup</button>
+  <nav>
+    <button class="tab active" data-p="0">Overview</button>
+    <button class="tab" data-p="mgmt">Management</button>
+    <button class="tab" data-p="1">Powerranking</button>
+    <button class="tab" data-p="2">News</button>
+    <button class="tab" data-p="3">Transfers</button>
+    <button class="tab" data-p="4">Draft</button>
   </nav>
 
-  <!-- ============ CHEATSHEET ============ -->
-  <section id="tab-cheat" class="panel active">
+  <!-- ===== OVERVIEW ===== -->
+  <div class="panel active" data-panel="0">
+    <div id="alertsContainer"></div>
 
-    <div class="card">
-      <h2>Formation</h2>
-      <p style="margin:6px 0;font-size:15px;"><span style="color:var(--muted);">Primær:</span> <strong style="color:var(--gold);">3-4-3</strong></p>
-      <p style="margin:6px 0;font-size:15px;"><span style="color:var(--muted);">Alternativ:</span> <strong style="color:var(--gold);">3-5-2</strong></p>
+    <section>
+      <p class="label">Stilling <span id="gwLabel" style="text-transform:none;color:var(--text-dim);"></span></p>
+      <div class="card" id="standingsCard"></div>
+    </section>
+
+    <section>
+      <p class="label">Placering pr. gameweek</p>
+      <div class="chart-box"><canvas id="rankChart"></canvas></div>
+      <div class="legend" id="chartLegend"></div>
+    </section>
+
+    <section>
+      <p class="label">Gameweek-resumé</p>
+      <div class="card" id="feedCard" style="padding:4px 16px;"></div>
+    </section>
+
+    <section>
+      <p class="label">Sæson-highlights</p>
+      <div class="hl-grid" id="highlightsGrid"></div>
+    </section>
+
+    <div class="links">
+      <a href="https://draft.premierleague.com/league/668" target="_blank" rel="noopener">↗ Fantasy Premier League: 404 Clean Sheet Not Found</a>
+      <a href="#" id="discordLink" target="_blank" rel="noopener">↗ Discord</a>
     </div>
+  </div>
 
-    <div class="card">
-      <h2>Prioriteret liste</h2>
+  <!-- ===== MANAGEMENT ===== -->
+  <div class="panel" data-panel="mgmt">
+    <p class="label" id="mgmtLabel">Startopstilling</p>
+    <div id="mgmtBody"></div>
+  </div>
 
-      <div class="tier-row">
-        <div class="tier-num">1</div>
-        <div class="tier-players">
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Erling Haaland</span><span class="club">Man City</span><span class="note">239 point sidste sæson — suverænt bedste spiller i FPL, uanset ingen kaptajnbonus.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bruno Fernandes</span><span class="club">Man Utd</span><span class="note">235 point, sæsonens spiller, straffesparkstager, assist-rekord (21).</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Gabriel</span><span class="club">Arsenal</span><span class="note">209 point — bedste forsvarsspiller i FPL, clean sheets + angrebstrussel.</span></div>
-        </div>
-      </div>
+  <!-- ===== POWERRANKING ===== -->
+  <div class="panel" data-panel="1">
+    <div class="card" id="prCard"></div>
+    <button id="prToggle" style="width:100%;margin-top:10px;font-family:'Inter';font-size:13px;font-weight:500;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;display:none;">Vis alle 25</button>
+  </div>
 
-      <div class="tier-row">
-        <div class="tier-num">2</div>
-        <div class="tier-players">
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Semenyo</span><span class="club">Man City</span><span class="note">202 point, eksplosiv sæson — og assisterede 5 af Citys 6 presæson-mål. Formen fortsætter.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Virgil van Dijk</span><span class="club">Liverpool</span><span class="note">175 point. Iraola boostede sine CB'ers DefCon-tal i Bournemouth — samme effekt kan følge med ham til Anfield.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Declan Rice</span><span class="club">Arsenal</span><span class="note">184 point, box-to-box med DefCon oveni angrebstruslen. Arsenals faste hjørner/frispark-taker (#1) — ekstra pointvej.</span></div>
-        </div>
-      </div>
+  <!-- ===== NEWS ===== -->
+  <div class="panel" data-panel="2">
+    <div id="newsBody"></div>
+  </div>
 
-      <div class="tier-row">
-        <div class="tier-num">3</div>
-        <div class="tier-players">
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Marc Guéhi</span><span class="club">Man City</span><span class="note">179 point — en af ligaens bedste defensive pointmaskiner.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Igor Thiago</span><span class="club">Brentford</span><span class="note">181 point, bedste value-angriber i ligaen, ingen tegn på exit.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Rogers</span><span class="club">Chelsea</span><span class="note">169 point som Villas gennembrudsspiller — nu britisk rekordsignering hos Xabi Alonsos Chelsea.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">David Raya</span><span class="club">Arsenal</span><span class="note">Guldhandske, 162 point, bedste forsvar i ligaen foran sig.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bukayo Saka</span><span class="club">Arsenal</span><span class="note">157 point, men nu Arsenals faste straffesparkstager (#1) + backup på hjørner/frispark bag Rice — markant opgraderet pointpotentiale i år.</span></div>
-        </div>
-      </div>
+  <!-- ===== TRANSFERS ===== -->
+  <div class="panel" data-panel="3">
+    <p class="label">Forslag inden næste deadline <span id="deadlineLabel" style="text-transform:none;color:var(--text-dim);"></span></p>
+    <div id="suggestionsBody"></div>
 
-      <div class="tier-row">
-        <div class="tier-num">4</div>
-        <div class="tier-players">
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Elliot Anderson</span><span class="club">Man City</span><span class="note">Toppede DefCon med 52 point for Forest — nu i stærkere City-hold under Maresca.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">James Tarkowski</span><span class="club">Everton</span><span class="note">170 point, DefCon-topscorer 2 sæsoner i træk.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">João Pedro</span><span class="club">Chelsea</span><span class="note">177 point + suverænt bedste presæson-form i hele ligaen (7 mål/6 kampe, hattrick). Afviste kæmpe bud fra Arsenal/Barcelona, uomtvistet førstevalg hos Alonso — Rogers spiller ved siden af, ikke i stedet for.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Gibbs-White</span><span class="club">Nott'm Forest</span><span class="note">188 point til lav prioritet — kæmpe value, let regressionsrisiko.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Ollie Watkins</span><span class="club">Aston Villa</span><span class="note">167 point. Scorede i alle 5 presæson-kampe, inkl. mod Frankfurt/Roma/Villarreal — god form ind i sæsonen.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Matz Sels</span><span class="club">Nott'm Forest</span><span class="note">105 point bag et solidt Forest-forsvar.</span></div>
-        </div>
-      </div>
+    <p class="label" style="margin-top:28px;">Historik</p>
+    <div class="card" id="historyCard"></div>
 
-      <div class="tier-row">
-        <div class="tier-num">5</div>
-        <div class="tier-players">
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Maxence Lacroix</span><span class="club">Chelsea</span><span class="note">Ny signing, en af kun to DEF i DefCon-top 5 to sæsoner i træk. Differential.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Jeremy Jacquet</span><span class="club">Liverpool</span><span class="note">Ny signing (vandt kapløb mod Chelsea). Iraola-effekten kan gøre ham billig og god.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Viktor Gyökeres</span><span class="club">Arsenal</span><span class="note">Talentfuld, men kun backup-straffespark (Saka er #1) og rotationsrisiko mod Jesus/Havertz — boom/bust, ikke sikkert valg.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Emiliano Martínez</span><span class="club">Aston Villa</span><span class="note">120 point, stabil.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Evanilson</span><span class="club">Bournemouth</span><span class="note">115 point, men Iraola (som løftede holdets defensive spil) er rejst til Liverpool — usikker system-effekt.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Caoimhín Kelleher</span><span class="club">Brentford</span><span class="note">143 point, høj redningsvolumen.</span></div>
-        </div>
-      </div>
+    <p class="label" style="margin-top:28px;">Bænk-tendens</p>
+    <div id="benchTrendBody"></div>
+  </div>
 
+  <!-- ===== DRAFT ===== -->
+  <div class="panel" data-panel="4">
+    <div class="pos-tabs">
+      <button class="on" data-pos="GK">Målmænd</button>
+      <button data-pos="DEF">Forsvar</button>
+      <button data-pos="MID">Midtbane</button>
+      <button data-pos="FWD">Angreb</button>
     </div>
+    <div class="card" id="draftCard"></div>
+  </div>
 
-    <div class="card">
-      <h2>Shortlists pr. position</h2>
-      <p class="sub">10 navne pr. position. Brug disse når tier-listen er tømt for din runde.</p>
-
-      <details class="pos-list" open>
-        <summary>Målmænd <span class="arrow">▾</span></summary>
-        <div class="pos-body">
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">David Raya</span><span class="club">Arsenal</span><span class="note">Elite — 19 clean sheets, guldhandske.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Matz Sels</span><span class="club">Nott'm Forest</span><span class="note">105 point, solidt forsvar bagved.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Emiliano Martínez</span><span class="club">Aston Villa</span><span class="note">120 point, konsistent.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Caoimhín Kelleher</span><span class="club">Brentford</span><span class="note">143 point, mange redninger.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Bart Verbruggen</span><span class="club">Brighton</span><span class="note">130 point, fint sen-runde-valg.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Dean Henderson</span><span class="club">Crystal Palace</span><span class="note">131 point. Palace vandt Conference League sidste sæson — nu i Europa League, solidt forsvar bagved.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Robin Roefs</span><span class="club">Sunderland</span><span class="note">136 point. OBS: Sunderland blev IKKE forfremmet i år — de rykkede op i 2025/26 og sluttede overraskende nr. 7 (Europa League!). Går ind til sæson 2 som etableret, ikke skrøbeligt oprykkerhold.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Jordan Pickford</span><span class="club">Everton</span><span class="note">135 point, Englands faste mand — år efter år konsistent.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Gianluigi Donnarumma</span><span class="club">Man City</span><span class="note">135 point, storsignering i Marescas nye City-projekt.</span></div>
-          <div class="p-card"><span class="pos pos-GK">GK</span><span class="name">Đorđe Petrović</span><span class="club">Bournemouth</span><span class="note">124 point, men Bournemouth mister Iraola-effekten i år.</span></div>
-        </div>
-      </details>
-
-      <details class="pos-list" open>
-        <summary>Forsvar <span class="arrow">▾</span></summary>
-        <div class="pos-body">
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Gabriel</span><span class="club">Arsenal</span><span class="note">209 point — topvalg.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Virgil van Dijk</span><span class="club">Liverpool</span><span class="note">175 point, potentielt DefCon-boost under Iraola.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Marc Guéhi</span><span class="club">Man City</span><span class="note">179 point.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">James Tarkowski</span><span class="club">Everton</span><span class="note">170 point, DefCon-maskine.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Maxence Lacroix</span><span class="club">Chelsea</span><span class="note">Ny hos Chelsea — differential.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Jeremy Jacquet</span><span class="club">Liverpool</span><span class="note">Ny signing, Iraola-effekt.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Marcos Senesi</span><span class="club">Spurs</span><span class="note">175 point, skiftede fra Bournemouth i sommer — DefCon-tallene fra Iraola-æraen flytter ikke automatisk med.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Adrien Truffert</span><span class="club">Bournemouth</span><span class="note">165 point, men usikkert niveau uden Iraola.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Nico O'Reilly</span><span class="club">Man City</span><span class="note">160 point, alsidig del af Marescas forsvar.</span></div>
-          <div class="p-card"><span class="pos pos-DEF">DEF</span><span class="name">Matheus Nunes</span><span class="club">Man City</span><span class="note">154 point, solid dybde/rotation. Let banket lige nu — 75% spilchance ifølge seneste opdatering.</span></div>
-        </div>
-      </details>
-
-      <details class="pos-list" open>
-        <summary>Midtbane <span class="arrow">▾</span></summary>
-        <div class="pos-body">
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bruno Fernandes</span><span class="club">Man Utd</span><span class="note">235 point — topvalg.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Semenyo</span><span class="club">Man City</span><span class="note">202 point, 5 presæson-assists — formen fortsætter.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Declan Rice</span><span class="club">Arsenal</span><span class="note">184 point + DefCon + faste hjørner/frispark (#1).</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Rogers</span><span class="club">Chelsea</span><span class="note">Ny hos Chelsea, gennembrudsspiller.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Elliot Anderson</span><span class="club">Man City</span><span class="note">DefCon-konge, nu hos City.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Morgan Gibbs-White</span><span class="club">Nott'm Forest</span><span class="note">188 point, stor value.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Harry Wilson</span><span class="club">Leeds</span><span class="note">168 point — drev Leeds' angreb i deres oprykningssæson 2025/26 (ikke i år, de er nu i deres 2. sæson). Kun backup på hjørner, ingen faste dødbolde.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Dominik Szoboszlai</span><span class="club">Liverpool</span><span class="note">160 point, allerede i god form under Iraola. Tager hjørner/frispark + backup-straffespark.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bukayo Saka</span><span class="club">Arsenal</span><span class="note">157 point, nailed-on starter. Er Arsenals faste straffesparkstager (#1), backup på hjørner/frispark — markant opgraderet pointpotentiale.</span></div>
-          <div class="p-card"><span class="pos pos-MID">MID</span><span class="name">Bruno Guimarães</span><span class="club">Arsenal</span><span class="note">154 point for Newcastle sidste sæson — men skiftede til Arsenal for £75m i august. Går fra sikker kaptajn til rotation mod Rice/Saka/Ødegaard i et allerede stacket midtbanehold. Differential, ikke sikkert valg længere.</span></div>
-        </div>
-      </details>
-
-      <details class="pos-list" open>
-        <summary>Angreb <span class="arrow">▾</span></summary>
-        <div class="pos-body">
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Erling Haaland</span><span class="club">Man City</span><span class="note">239 point — topvalg.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Igor Thiago</span><span class="club">Brentford</span><span class="note">181 point, bedste value.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">João Pedro</span><span class="club">Chelsea</span><span class="note">177 point + bedste presæson-form i ligaen. Uomtvistet førstevalg, ingen Europa at dele fokus med.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Ollie Watkins</span><span class="club">Aston Villa</span><span class="note">167 point, scoret i alle 5 presæson-kampe — god form.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Viktor Gyökeres</span><span class="club">Arsenal</span><span class="note">Boom/bust — rotationsrisiko, og kun backup-straffespark bag Saka.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Evanilson</span><span class="club">Bournemouth</span><span class="note">115 point, usikker uden Iraola.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Dominic Calvert-Lewin</span><span class="club">Leeds</span><span class="note">142 point — genfandt formen i Leeds' oprykningssæson 2025/26. De er nu i deres 2. sæson i PL, ikke friske oprykkere i år.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Hugo Ekitiké</span><span class="club">Liverpool</span><span class="note">125 point, ny angrebsprofil efter Salah-exit — men achilles-skade lige nu, ukendt returdato.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Jean-Philippe Mateta</span><span class="club">Crystal Palace</span><span class="note">114 point, 4 mål + assist i sidste 3 presæson-kampe. Er straffesparkstager #1 — Eze (som tidligere delte duty) er solgt til Arsenal, så Mateta står nu alene om dem.</span></div>
-          <div class="p-card"><span class="pos pos-FWD">FWD</span><span class="name">Benjamin Šeško</span><span class="club">Man Utd</span><span class="note">111 point, United-storsignering — men skinnebensskade lige nu, 75% spilchance ifølge seneste opdatering.</span></div>
-        </div>
-      </details>
+  <!-- ===== ASSISTENT MANAGER (drawer) ===== -->
+  <div class="am-overlay" id="amOverlay"></div>
+  <div class="am-drawer" id="amDrawer">
+    <div class="am-head">
+      <span>✦ Assistent Manager</span>
+      <button class="am-close" id="amClose">✕</button>
     </div>
-  </section>
-
-  <!-- ============ LIVE DRAFT ============ -->
-  <section id="tab-draft" class="panel">
-    <div class="card">
-      <h2>Live draft-tracker</h2>
-
-      <div class="draft-toolbar">
-        <input type="text" id="poolSearch" placeholder="🔍 Søg efter spiller eller klub..." oninput="renderPool()" style="flex:1 1 100%;">
+    <div class="chat-box">
+      <div class="chat-msgs" id="chatMsgs">
+        <div class="msg ai">Hej! Assistent Manager er endnu ikke koblet til en AI-backend — det kræver en Cloudflare Worker vi ikke har bygget færdig endnu. Denne rude er klar til at blive koblet til, når den del er på plads.</div>
       </div>
-
-      <div class="draft-toolbar">
-        <input type="text" id="newPlayerName" placeholder="Spillernavn">
-        <input type="text" id="newPlayerClub" placeholder="Klub">
-        <select id="newPlayerPos">
-          <option value="GK">GK</option>
-          <option value="DEF">DEF</option>
-          <option value="MID">MID</option>
-          <option value="FWD">FWD</option>
-        </select>
-        <button class="btn btn-gold" onclick="addCustomPlayer()">Tilføj til pulje</button>
+      <div class="chat-chips">
+        <button class="chat-chip" disabled>Hvem skal jeg trade?</button>
+        <button class="chat-chip" disabled>Skader på min trup</button>
+        <button class="chat-chip" disabled>Vurdér min startopstilling</button>
       </div>
-
-      <div id="poolList"></div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Ikke tilsluttet endnu..." disabled>
+        <button class="chat-send" id="chatSend" disabled>Send</button>
+      </div>
     </div>
-  </section>
-
-  <!-- ============ MIN TRUP ============ -->
-  <section id="tab-squad" class="panel">
-    <div class="card">
-      <h2>Min trup <span class="slot-count" id="squadCountLabel"></span></h2>
-      <p class="sub">Krav: 2 GK · 5 DEF · 5 MID · 3 FWD (15 i alt).</p>
-      <div class="squad-grid" id="squadGrid"></div>
-    </div>
-  </section>
+  </div>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-// ---------- state ----------
-let STATE = { mySquad: [], taken: [], customPool: [] };
-const STORAGE_KEY = 'fpldraft-state-v1';
+const MY_ENTRY_ID = 1510;
 
-const BASE_POOL = [
-  {id:1, name:'David Raya', club:'Arsenal', pos:'GK'},
-  {id:467, name:'Matz Sels', club:"Nott'm Forest", pos:'GK'},
-  {id:28, name:'Emiliano Martínez', club:'Aston Villa', pos:'GK'},
-  {id:82, name:'Caoimhín Kelleher', club:'Brentford', pos:'GK'},
-  {id:109, name:'Bart Verbruggen', club:'Brighton', pos:'GK'},
-  {id:198, name:'Dean Henderson', club:'Crystal Palace', pos:'GK'},
+let state = { siteData:null, rankHistory:{}, powerranking:null, draftRankings:null, management:null, news:null };
 
-  {id:4, name:'Gabriel', club:'Arsenal', pos:'DEF'},
-  {id:356, name:'Virgil van Dijk', club:'Liverpool', pos:'DEF'},
-  {id:388, name:'Marc Guéhi', club:'Man City', pos:'DEF'},
-  {id:229, name:'James Tarkowski', club:'Everton', pos:'DEF'},
-  {id:200, name:'Maxence Lacroix', club:'Chelsea', pos:'DEF'},
-  {id:362, name:'Jeremy Jacquet', club:'Liverpool', pos:'DEF'},
-
-  {id:426, name:'Bruno Fernandes', club:'Man Utd', pos:'MID'},
-  {id:397, name:'Semenyo', club:'Man City', pos:'MID'},
-  {id:13, name:'Declan Rice', club:'Arsenal', pos:'MID'},
-  {id:40, name:'Morgan Rogers', club:'Chelsea', pos:'MID'},
-  {id:481, name:'Elliot Anderson', club:'Man City', pos:'MID'},
-  {id:480, name:'Morgan Gibbs-White', club:"Nott'm Forest", pos:'MID'},
-
-  {id:411, name:'Erling Haaland', club:'Man City', pos:'FWD'},
-  {id:106, name:'Igor Thiago', club:'Brentford', pos:'FWD'},
-  {id:165, name:'João Pedro', club:'Chelsea', pos:'FWD'},
-  {id:55, name:'Ollie Watkins', club:'Aston Villa', pos:'FWD'},
-  {id:25, name:'Viktor Gyökeres', club:'Arsenal', pos:'FWD'},
-  {id:79, name:'Evanilson', club:'Bournemouth', pos:'FWD'},
-];
-
-// Fulde Premier League-spillerbase (til søgning) — hentes fra data.json ved runtime,
-// som en GitHub Action holder opdateret. Tom indtil den er hentet; falder tilbage
-// til kun BASE_POOL hvis data.json ikke kan hentes (fx kørt lokalt uden server).
-let FULL_POOL = [];
-let DATA_UPDATED_AT = null;
-
-const SLOT_LIMITS = {GK:2, DEF:5, MID:5, FWD:3};
-
-// ---------- persistence ----------
-// Uses Claude's window.storage when this runs inside a Claude artifact.
-// Falls back to plain localStorage when hosted standalone (e.g. GitHub Pages),
-// so the exact same file works in both places.
-const hasClaudeStorage = typeof window !== 'undefined' && window.storage && typeof window.storage.get === 'function';
-
-async function loadState(){
-  try{
-    if(hasClaudeStorage){
-      const res = await window.storage.get(STORAGE_KEY);
-      if(res && res.value) STATE = Object.assign(STATE, JSON.parse(res.value));
-    } else {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(raw) STATE = Object.assign(STATE, JSON.parse(raw));
-    }
-  }catch(e){ /* no saved state yet, fine */ }
-  render();
+// ---------- tiny helpers ----------
+function shortName(full){
+  if(!full) return '?';
+  const parts = full.split(' ');
+  const particles = ['van','de','dos','da','der','den','du','la','le'];
+  if(parts.length>=2 && particles.includes(parts[parts.length-2].toLowerCase())){
+    return parts.slice(-2).join(' ');
+  }
+  return parts[parts.length-1];
 }
-async function saveState(){
+function fmtDate(iso){
+  if(!iso) return 'Ukendt';
+  const d = new Date(iso);
+  const days = ['søndag','mandag','tirsdag','onsdag','torsdag','fredag','lørdag'];
+  const months = ['januar','februar','marts','april','maj','juni','juli','august','september','oktober','november','december'];
+  return `${days[d.getUTCDay()]} ${d.getUTCDate()}. ${months[d.getUTCMonth()]} kl. ${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}`;
+}
+async function safeFetch(path){
   try{
-    if(hasClaudeStorage){
-      await window.storage.set(STORAGE_KEY, JSON.stringify(STATE));
-    } else {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
-    }
-  }catch(e){ console.error('Kunne ikke gemme', e); }
+    const res = await fetch(path, {cache:'no-store'});
+    if(!res.ok) return null;
+    return await res.json();
+  }catch(e){ return null; }
 }
 
-// ---------- live data (data.json, holdt opdateret af GitHub Action) ----------
-async function loadLiveData(){
-  try{
-    const res = await fetch('./data.json', {cache: 'no-store'});
-    if(!res.ok) throw new Error('data.json ikke tilgængelig (status '+res.status+')');
-    const json = await res.json();
-    DATA_UPDATED_AT = json.updated || null;
+// ---------- OVERVIEW ----------
+function renderAlerts(alerts){
+  const c = document.getElementById('alertsContainer');
+  const mine = (alerts||[]).filter(a=>a.owner_entry_id===MY_ENTRY_ID);
+  if(mine.length===0){ c.innerHTML=''; return; }
+  const items = mine.map(a=>`<li><span class="dot"></span>${a.player} (${a.club}) — ${a.news}</li>`).join('');
+  c.innerHTML = `<button class="alert" onclick="document.querySelector('[data-p=\\'mgmt\\']').click();window.scrollTo({top:0,behavior:'smooth'});">
+    <h3>Advarsel</h3><ul>${items}</ul>
+  </button>`;
+}
 
-    const curatedIds = new Set(BASE_POOL.map(p=>String(p.id)));
-    FULL_POOL = (json.players || [])
-      .filter(p=>!curatedIds.has(String(p.id)))
-      .map(p=>({id:p.id, name:p.name, club:p.club, pos:p.pos}));
+function renderStandings(sd){
+  document.getElementById('gwLabel').textContent = sd.season_started ? `— GW ${sd.current_gw}` : '— før sæsonstart';
+  const card = document.getElementById('standingsCard');
+  card.innerHTML = sd.standings.map((r,i)=>{
+    let rankDisplay = i+1;
+    let rankClass = '';
+    if(i===0){ rankDisplay = '🏆'; rankClass='gold'; }
+    else if(i===sd.standings.length-1){ rankDisplay = '💩'; }
+    let trendHtml = '<span class="trend same">–</span>';
+    if(r.trend!=null && r.trend>0) trendHtml = `<span class="trend up">▲${r.trend}</span>`;
+    else if(r.trend!=null && r.trend<0) trendHtml = `<span class="trend down">▼${Math.abs(r.trend)}</span>`;
+    return `<div class="row"><span class="rank ${rankClass}">${rankDisplay}</span><span class="name">${r.name}</span>${trendHtml}<span class="pts num">${r.total}</span></div>`;
+  }).join('');
+}
 
-    // Opdater klub/position på de kuraterede spillere, i tilfælde af transfers —
-    // selve noten (den håndskrevne vurdering) rører vi ikke ved.
-    const byId = new Map((json.players || []).map(p=>[String(p.id), p]));
-    BASE_POOL.forEach(p=>{
-      const live = byId.get(String(p.id));
-      if(live){ p.club = live.club; p.pos = live.pos; }
+function renderChart(rankHistory, sd){
+  const box = document.querySelector('.chart-box');
+  const gwKeys = Object.keys(rankHistory).sort((a,b)=>parseInt(a.slice(2))-parseInt(b.slice(2)));
+  if(gwKeys.length===0){
+    box.innerHTML = '<div class="empty-state"><p>Ingen gameweeks spillet endnu.</p><p class="sub">Kurven bygger sig op efterhånden som sæsonen skrider frem.</p></div>';
+    document.getElementById('chartLegend').innerHTML = '';
+    return;
+  }
+  box.innerHTML = '<canvas id="rankChart"></canvas>';
+  const entries = sd.standings.map(r=>({id:r.league_entry, name:r.name}));
+  const datasets = entries.map(e=>{
+    const isMe = e.id===MY_ENTRY_ID;
+    return {
+      label:e.name,
+      data: gwKeys.map(gw => (rankHistory[gw].ranks && rankHistory[gw].ranks[String(e.id)]) ?? null),
+      borderColor: isMe?'#14432A':'#C7C7C0', borderWidth:isMe?2.5:1.5,
+      pointRadius:isMe?3:2, pointBackgroundColor:isMe?'#14432A':'#C7C7C0',
+      tension:0, clip:false,
+    };
+  });
+  new Chart(document.getElementById('rankChart'), {
+    type:'line',
+    data:{labels:gwKeys, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      layout:{padding:{top:16,right:10,bottom:2}},
+      scales:{
+        y:{reverse:true, min:1, max:entries.length, ticks:{stepSize:1,font:{family:'IBM Plex Mono',size:11},color:'#9C9C96'}, grid:{color:'#EEEEEA'}},
+        x:{ticks:{font:{family:'Inter',size:11.5},color:'#9C9C96'}, grid:{display:false}},
+      },
+      plugins:{legend:{display:false}},
+    },
+  });
+  const me = entries.find(e=>e.id===MY_ENTRY_ID);
+  document.getElementById('chartLegend').innerHTML =
+    `<span><i style="background:#14432A"></i>${me?me.name:'Dig'}</span><span><i style="background:#C7C7C0"></i>Øvrige hold</span>`;
+}
+
+function renderFeed(summaries){
+  const c = document.getElementById('feedCard');
+  if(!summaries || summaries.length===0){
+    c.innerHTML = '<div class="empty-state"><p>Ingen gameweek-resuméer endnu.</p><p class="sub">Det første kommer når GW1 er færdigspillet.</p></div>';
+    return;
+  }
+  c.innerHTML = summaries.map(s=>`
+    <div class="feed-entry">
+      <div class="meta"><span class="gw">Gameweek ${s.gw}</span></div>
+      <p style="white-space:pre-wrap;">${s.text}</p>
+    </div>`).join('');
+}
+
+function renderHighlights(h){
+  const grid = document.getElementById('highlightsGrid');
+  if(!h || !h.highest_gw_score){
+    grid.innerHTML = '<div class="hl-box" style="grid-column:1/-1;"><div class="l">Ingen highlights endnu — kommer efter første gameweek.</div></div>';
+    return;
+  }
+  grid.innerHTML = `<div class="hl-box"><div class="v num">${h.highest_gw_score.score}</div><div class="l">Højeste GW-score (${h.highest_gw_score.name}, ${h.highest_gw_score.gw})</div></div>`;
+}
+
+// ---------- MANAGEMENT ----------
+function buildFixtureTicker(fixtures, startGw){
+  if(!fixtures || fixtures.length===0){
+    return '<div class="empty-state"><p>Ingen kampdata tilgængelig.</p></div>';
+  }
+  const maxLen = Math.max(...fixtures.map(f=>f.difficulty.length), 1);
+  let labels = '<div class="fix-labels"><span class="spacer"></span><div class="fix-cells">';
+  for(let i=0;i<maxLen;i++) labels += `<span>GW${startGw+i}</span>`;
+  labels += '</div></div>';
+  const rows = fixtures.map(f=>{
+    const cells = f.difficulty.map(d=>`<span class="fix-cell fix-${d}">${d}</span>`).join('');
+    return `<div class="fix-row"><div class="club"><span class="cn">${f.club}</span><span class="cc">${f.count} spiller${f.count>1?'e':''}</span></div><div class="fix-cells">${cells}</div></div>`;
+  }).join('');
+  return labels + rows;
+}
+
+function renderManagement(mgmt, sd){
+  const body = document.getElementById('mgmtBody');
+  document.getElementById('mgmtLabel').textContent = 'Startopstilling';
+  if(!mgmt || !mgmt.available){
+    body.innerHTML = `<div class="card"><div class="empty-state">
+      <p>${(mgmt && mgmt.reason) || 'Ingen data tilgængelig endnu.'}</p>
+      <p class="sub">Opstillingen vises her automatisk når du har sat picks for kommende gameweek på FPL.</p>
+    </div></div>`;
+    return;
+  }
+  const rows = {GK:[],DEF:[],MID:[],FWD:[]};
+  mgmt.starters.forEach(p=>{ if(rows[p.pos]) rows[p.pos].push(p); });
+  const rowTop = {FWD:13, MID:38, DEF:62, GK:89};
+  let chips = '';
+  ['FWD','MID','DEF','GK'].forEach(pos=>{
+    const list = rows[pos];
+    const n = list.length;
+    list.forEach((p,i)=>{
+      const left = ((i+1)/(n+1))*100;
+      const flagged = p.status!=='a' || (p.chance!=null && p.chance<75);
+      const flagDot = flagged ? '<span class="flagdot"></span>' : '';
+      const chanceTxt = flagged && p.chance!=null ? ` · ${p.chance}%` : '';
+      chips += `<div class="pchip" style="left:${left}%;top:${rowTop[pos]}%;">
+        <div class="dot">${pos}${flagDot}</div>
+        <span class="pname">${shortName(p.name)}</span><span class="pclub">${p.club}${chanceTxt}</span>
+      </div>`;
     });
-  }catch(e){
-    console.warn('Kunne ikke hente data.json, bruger indlejret fallback-data:', e);
-  }
-  render();
-  renderDataBadge();
+  });
+  document.getElementById('mgmtLabel').textContent = `Startopstilling (${rows.DEF.length}-${rows.MID.length}-${rows.FWD.length})`;
+
+  const benchHtml = mgmt.bench.map(p=>
+    `<div class="bchip"><span class="bpos">${p.pos}</span><span class="bname">${shortName(p.name)}</span><span class="bclub">${p.club}</span></div>`
+  ).join('');
+
+  const suggHtml = (!mgmt.suggestions || mgmt.suggestions.length===0)
+    ? '<div class="sugg"><p style="margin:0;">Ingen ombytninger anbefalet lige nu — opstillingen ser fin ud.</p></div>'
+    : mgmt.suggestions.map(s=>`
+      <div class="sugg">
+        <div class="move">${s.out} <span class="arrow">ud</span>${s.in ? ` — ${s.in} <span class="arrow">ind</span>` : ''} <span class="type swap">${s.type}</span></div>
+        <p>${s.reason}</p>
+      </div>`).join('');
+
+  const startGw = sd.season_started ? sd.current_gw+1 : 1;
+  const fixHtml = buildFixtureTicker(mgmt.fixtures, startGw);
+
+  const injHtml = (!mgmt.injury_news || mgmt.injury_news.length===0)
+    ? '<div class="empty-state"><p>Ingen kendte skader på din trup lige nu.</p></div>'
+    : mgmt.injury_news.map(n=>`
+      <div class="news-item">
+        <div class="top"><span class="tag injury">Skade</span></div>
+        <p><span class="who">${n.player}</span> (${n.club}) — ${n.news}</p>
+      </div>`).join('');
+
+  body.innerHTML = `
+    <div class="pitch"><div class="pline"></div><div class="pcircle"></div>${chips}</div>
+    <p class="label" style="margin-top:20px;">Bænk</p>
+    <div class="bench-strip" style="margin-bottom:28px;">${benchHtml}</div>
+    <p class="label">Anbefalede ombytninger</p>
+    ${suggHtml}
+    <div class="links" style="margin-bottom:28px;"><a href="#" onclick="openAM();return false;">✦ Spørg Assistent Manager om din trup</a></div>
+    <p class="label">Kampprogram — dine spilleres klubber</p>
+    <div class="card" style="margin-bottom:28px;">${fixHtml}</div>
+    <p class="label">Skader på din trup</p>
+    <div class="card" style="padding:0 16px;">${injHtml}</div>
+  `;
 }
-function renderDataBadge(){
-  const dot = document.getElementById('statusDot');
-  const text = document.getElementById('statusText');
-  if(!dot || !text) return;
-  if(DATA_UPDATED_AT){
-    dot.className = 'status-dot live';
-    text.textContent = 'Live · ' + DATA_UPDATED_AT.slice(0,16).replace('T',' ');
-  } else {
-    dot.className = 'status-dot offline';
-    text.textContent = 'Offline (fallback)';
+
+// ---------- POWERRANKING / DRAFT (delt komponent) ----------
+function scoreGradientBg(idx){
+  const start=[0x14,0x43,0x2A], end=[0xEC,0xEC,0xE7];
+  const t = Math.min(idx,14)/14;
+  const rgb = start.map((s,i)=>Math.round(s+(end[i]-s)*t));
+  return `rgb(${rgb.join(',')})`;
+}
+
+function renderRankedList(cardId, toggleBtnId, list){
+  const card = document.getElementById(cardId);
+  const btn = document.getElementById(toggleBtnId);
+  if(!list || list.length===0){
+    card.innerHTML = '<div class="empty-state"><p>Ingen rangering tilgængelig endnu.</p></div>';
+    if(btn) btn.style.display = 'none';
+    return;
+  }
+  function rowHtml(p,i){
+    return `<div class="pr-row">
+      <div class="pr-main">
+        <div class="pr-top"><span class="rank num">${i+1}</span><span class="name">${p.name}</span><span class="club">${p.club}</span></div>
+        <p class="pr-arg">${p.argument || (p.total_points + ' point sidste sæson.')}</p>
+      </div>
+      <div class="pr-score-box" style="background:${scoreGradientBg(i)}"><span class="num" style="color:#FFFFFF">${Math.round(p.score)}</span></div>
+    </div>`;
+  }
+  const first10 = list.slice(0,10).map(rowHtml).join('');
+  const rest = list.slice(10);
+  const restHtml = rest.map((p,i)=>rowHtml(p,i+10)).join('');
+  card.innerHTML = first10 + (rest.length>0 ? `<div id="${cardId}Extra" style="display:none">${restHtml}</div>` : '');
+  if(btn){
+    if(rest.length>0){
+      btn.style.display = 'block';
+      btn.textContent = `Vis alle ${list.length}`;
+      btn.onclick = ()=>{
+        const extra = document.getElementById(`${cardId}Extra`);
+        const showing = extra.style.display==='block';
+        extra.style.display = showing ? 'none' : 'block';
+        btn.textContent = showing ? `Vis alle ${list.length}` : 'Vis færre';
+      };
+    } else {
+      btn.style.display = 'none';
+    }
   }
 }
 
-// ---------- tabs ----------
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+let activeDraftPos = 'GK';
+function renderDraft(draftData){
+  if(!draftData || !draftData.positions){
+    document.getElementById('draftCard').innerHTML = '<div class="empty-state"><p>Ingen data endnu.</p></div>';
+    return;
+  }
+  const list = draftData.positions[activeDraftPos] || [];
+  renderRankedList('draftCard', null, list);
+}
+
+// ---------- TRANSFERS ----------
+function renderTransfersTab(sd){
+  document.getElementById('deadlineLabel').textContent = sd.next_deadline ? `— ${fmtDate(sd.next_deadline)}` : '';
+
+  document.getElementById('suggestionsBody').innerHTML =
+    '<div class="empty-state"><p>Transfer-forslag på tværs af hele spillerfeltet er ikke bygget endnu.</p>' +
+    '<p class="sub">Se Management-fanen for interne ombytningsforslag fra din egen bænk.</p></div>';
+
+  const hist = sd.transactions || [];
+  const historyCard = document.getElementById('historyCard');
+  if(hist.length===0){
+    historyCard.innerHTML = '<div class="empty-state"><p>Ingen waivers eller trades endnu.</p></div>';
+  } else {
+    historyCard.innerHTML = hist.map(t=>{
+      const desc = t.player_out
+        ? `${t.player_in} ind, ${t.player_out} ud`
+        : `${t.player_in} ind`;
+      return `<div class="hist-row"><span class="gwtag num">GW${t.gw}</span><span class="txt"><b>${t.entry_name}:</b> ${desc} (${t.kind})</span></div>`;
+    }).join('');
+  }
+
+  const bt = sd.bench_trend || {};
+  const myBench = bt[String(MY_ENTRY_ID)] || 0;
+  const myRow = sd.standings.find(r=>r.league_entry===MY_ENTRY_ID);
+  const myTotal = myRow ? myRow.total : 0;
+  const pct = myTotal>0 ? Math.round((myBench/myTotal)*100) : 0;
+  const rankAmong = Object.values(bt).filter(v=>v>myBench).length + 1;
+  const benchBody = document.getElementById('benchTrendBody');
+  if(Object.keys(bt).length===0){
+    benchBody.innerHTML = '<div class="empty-state"><p>Ingen data endnu — kommer når gameweeks er spillet.</p></div>';
+  } else {
+    benchBody.innerHTML = `<div class="bench-box">
+      <div><span class="v">${myBench}</span><span class="l" style="display:block;">point ladet stå på bænken i sæsonen</span></div>
+      <div style="text-align:right;"><span style="font-size:13px;color:var(--text-dim);display:block;">${pct}% af dine ${myTotal} point</span><span style="font-size:12px;color:var(--text-faint);">${rankAmong}. flest i ligaen</span></div>
+    </div>`;
+  }
+}
+
+// ---------- NEWS ----------
+function renderNews(news){
+  const body = document.getElementById('newsBody');
+  if(!news){
+    body.innerHTML = '<div class="empty-state"><p>Nyhedsfanen er ikke bygget færdig endnu.</p>' +
+      '<p class="sub">Kræver Gemini-søgning med streng kildekontrol — kommer i næste fase.</p></div>';
+    return;
+  }
+  // Struktur klar til når news.json findes: kategori-bokse ligesom i mockup'et.
+  body.innerHTML = '<div class="empty-state"><p>Ingen nyheder lige nu.</p></div>';
+}
+
+// ---------- refresh / load orchestration ----------
+async function loadAll(){
+  const [siteData, rankHistory, powerranking, draftRankings, management, news] = await Promise.all([
+    safeFetch('./site-data.json'),
+    safeFetch('./rank-history.json'),
+    safeFetch('./powerranking.json'),
+    safeFetch('./draft-rankings.json'),
+    safeFetch('./management.json'),
+    safeFetch('./news.json'),
+  ]);
+  state = { siteData, rankHistory: rankHistory||{}, powerranking, draftRankings, management, news };
+
+  if(siteData){
+    renderAlerts(siteData.alerts);
+    renderStandings(siteData);
+    renderChart(state.rankHistory, siteData);
+    renderFeed(siteData.gw_summaries);
+    renderHighlights(siteData.highlights);
+    renderTransfersTab(siteData);
+  }
+  if(powerranking) renderRankedList('prCard', 'prToggle', powerranking.players);
+  if(draftRankings) renderDraft(draftRankings);
+  if(siteData) renderManagement(management, siteData);
+  renderNews(news);
+}
+
+// ---------- page chrome: loader, tabs, refresh, drawer (uændret fra mockup) ----------
+document.querySelectorAll('nav .tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('nav .tab').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    document.querySelector('[data-panel="'+btn.dataset.p+'"]').classList.add('active');
   });
 });
 
-// ---------- draft pool ----------
-function fullPool(){ return BASE_POOL.concat(FULL_POOL).concat(STATE.customPool); }
-function defaultPool(){ return BASE_POOL.concat(STATE.customPool); }
-
-function isTaken(id){ return STATE.taken.some(t=>String(t)===String(id)) || STATE.mySquad.some(p=>String(p.id)===String(id)); }
-
-function renderPool(){
-  const el = document.getElementById('poolList');
-  const searchEl = document.getElementById('poolSearch');
-  const search = searchEl ? searchEl.value.toLowerCase().trim() : '';
-
-  const source = search ? fullPool() : defaultPool();
-  let available = source.filter(p=>!isTaken(p.id));
-  let truncated = false;
-
-  if(search){
-    available = available.filter(p=>
-      p.name.toLowerCase().includes(search) || p.club.toLowerCase().includes(search)
-    );
-    if(available.length > 40){
-      truncated = true;
-      available = available.slice(0, 40);
-    }
-  }
-
-  if(available.length===0){
-    el.innerHTML = `<div class="empty-msg">${search ? 'Ingen spillere matcher "'+search+'".' : 'Puljen er tom — søg efter en spiller ovenfor, eller tilføj en manuelt.'}</div>`;
-    return;
-  }
-  el.innerHTML = available.map(p=>`
-    <div class="pool-item">
-      <span class="pos pos-${p.pos}">${p.pos}</span>
-      <span class="name">${p.name}</span>
-      <span class="meta">${p.club}</span>
-      <div class="pool-actions">
-        <button class="btn btn-gold btn-mini" onclick="draftForMe('${p.id}')">Jeg tager ham</button>
-        <button class="btn btn-ghost btn-mini" onclick="markTaken('${p.id}')">Taget af andre</button>
-      </div>
-    </div>
-  `).join('') + (truncated ? '<div class="empty-msg">+ flere matches — indsnævr søgningen for at se dem.</div>' : '');
-}
-
-function draftForMe(id){
-  const p = fullPool().find(x=>String(x.id)===String(id));
-  if(!p) return;
-  STATE.mySquad.push(p);
-  saveState(); render();
-}
-function markTaken(id){
-  STATE.taken.push(id);
-  saveState(); render();
-}
-function removeFromSquad(id){
-  STATE.mySquad = STATE.mySquad.filter(p=>String(p.id)!==String(id));
-  saveState(); render();
-}
-function addCustomPlayer(){
-  const name = document.getElementById('newPlayerName').value.trim();
-  const club = document.getElementById('newPlayerClub').value.trim();
-  const pos = document.getElementById('newPlayerPos').value;
-  if(!name) return;
-  const id = 'custom-'+name.toLowerCase().replace(/[^a-z0-9]/g,'')+'-'+Date.now();
-  STATE.customPool.push({id, name, club: club||'—', pos});
-  document.getElementById('newPlayerName').value='';
-  document.getElementById('newPlayerClub').value='';
-  saveState(); render();
-}
-
-function renderSquad(){
-  const grid = document.getElementById('squadGrid');
-  const label = document.getElementById('squadCountLabel');
-  const total = STATE.mySquad.length;
-  label.textContent = `(${total} / 15)`;
-
-  const groups = {GK:[], DEF:[], MID:[], FWD:[]};
-  STATE.mySquad.forEach(p=> groups[p.pos] && groups[p.pos].push(p));
-
-  let html = '';
-  ['GK','DEF','MID','FWD'].forEach(pos=>{
-    const count = groups[pos].length;
-    const limit = SLOT_LIMITS[pos];
-    const cls = count>limit ? 'over' : (count===limit ? 'ok' : '');
-    html += `<div class="slot-group"><h3><span class="pos pos-${pos}">${pos}</span> <span class="slot-count ${cls}">${count} / ${limit}</span></h3></div>`;
-    if(groups[pos].length===0){
-      html += `<div class="empty-msg" style="grid-column:1/-1;">Ingen valgt endnu.</div>`;
-    } else {
-      groups[pos].forEach(p=>{
-        html += `<div class="pool-item" style="grid-column:span 1;">
-          <div>
-            <div class="name">${p.name}</div>
-            <div class="meta">${p.club}</div>
-          </div>
-          <div class="pool-actions">
-            <button class="btn btn-ghost btn-mini" onclick="removeFromSquad('${p.id}')">Fjern</button>
-          </div>
-        </div>`;
-      });
-    }
+document.querySelectorAll('.pos-tabs button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pos-tabs button').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    activeDraftPos = btn.dataset.pos;
+    renderDraft(state.draftRankings);
   });
-  grid.innerHTML = html;
-}
+});
 
-function render(){
-  renderPool();
-  renderSquad();
-}
+document.getElementById('refreshBtn').addEventListener('click', async function(){
+  const btn=this, icon=document.getElementById('refreshIcon'), label=document.getElementById('refreshLabel');
+  btn.disabled=true; icon.classList.add('spin'); icon.textContent='↻'; label.textContent='Opdaterer…';
+  await loadAll();
+  icon.classList.remove('spin'); icon.textContent='✓'; label.textContent='Opdateret';
+  setTimeout(()=>{ icon.textContent='↻'; label.textContent='Opdatér'; btn.disabled=false; }, 1200);
+});
 
-loadState();
-loadLiveData();
+function openAM(){
+  document.getElementById('amOverlay').classList.add('open');
+  document.getElementById('amDrawer').classList.add('open');
+}
+function closeAM(){
+  document.getElementById('amOverlay').classList.remove('open');
+  document.getElementById('amDrawer').classList.remove('open');
+}
+document.getElementById('amBtn').addEventListener('click', openAM);
+document.getElementById('amClose').addEventListener('click', closeAM);
+document.getElementById('amOverlay').addEventListener('click', closeAM);
+
+// discord-link: sæt jeres reelle webhook-kanal-URL her (ikke webhooken selv - et almindeligt link til kanalen)
+document.getElementById('discordLink').href = '#';
+
+requestAnimationFrame(()=>{ document.getElementById('loaderBar').style.width='100%'; });
+setTimeout(()=>{
+  document.body.classList.add('loaded');
+  setTimeout(()=>{ const l=document.getElementById('pageLoader'); if(l) l.remove(); }, 450);
+}, 850);
+
+loadAll();
+
 </script>
 </body>
 </html>
