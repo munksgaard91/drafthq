@@ -509,6 +509,44 @@ function renderManagement(mgmt, sd){
     </div></div>`;
     return;
   }
+
+  if(mgmt.lineup_set === false){
+    // Trup kendt (draften er gennemført), men du har endnu ikke sat en specifik
+    // startopstilling for kommende gameweek på selve FPL - så vis truppen grupperet
+    // efter position i stedet for en bane, og forklar hvorfor.
+    document.getElementById('mgmtLabel').textContent = 'Din trup';
+    const grouped = {GK:[],DEF:[],MID:[],FWD:[]};
+    (mgmt.squad||[]).forEach(p=>{ if(grouped[p.pos]) grouped[p.pos].push(p); });
+    const squadRows = ['GK','DEF','MID','FWD'].map(pos =>
+      grouped[pos].map(p=>{
+        const flag = (p.status!=='a' || (p.chance!=null && p.chance<75)) ? `<span class="lineup-flag">${p.chance!=null?p.chance+'%':'?'}</span>` : '';
+        return `<div class="lineup-row"><span class="lineup-pos">${p.pos}</span><span class="lineup-name">${p.name}</span><span class="lineup-club">${p.club}</span>${flag}</div>`;
+      }).join('')
+    ).join('');
+    const startGw = sd.season_started ? sd.current_gw+1 : 1;
+    const fixHtml = buildFixtureTicker(mgmt.fixtures, startGw);
+    const injHtml = (!mgmt.injury_news || mgmt.injury_news.length===0)
+      ? '<div class="empty-state"><p>Ingen kendte skader på din trup lige nu.</p></div>'
+      : mgmt.injury_news.map(n=>`
+        <div class="news-item">
+          <div class="top"><span class="tag injury">Skade</span></div>
+          <p><span class="who">${n.player}</span> (${n.club}) — ${n.news}</p>
+        </div>`).join('');
+    body.innerHTML = `
+      <div class="card" style="margin-bottom:8px;">
+        <div class="empty-state" style="padding:16px;">
+          <p class="sub" style="margin:0;">Du har endnu ikke sat en startopstilling for kommende gameweek på FPL — banen med formation vises her automatisk så snart du har. Indtil da, her er hele din trup (${mgmt.squad.length} spillere).</p>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:28px;">${squadRows}</div>
+      <p class="label">Kampprogram — dine spilleres klubber</p>
+      <div class="card" style="margin-bottom:28px;">${fixHtml}</div>
+      <p class="label">Skader på din trup</p>
+      <div class="card" style="padding:0 16px;">${injHtml}</div>
+    `;
+    return;
+  }
+
   const rows = {GK:[],DEF:[],MID:[],FWD:[]};
   mgmt.starters.forEach(p=>{ if(rows[p.pos]) rows[p.pos].push(p); });
   const rowTop = {FWD:13, MID:38, DEF:62, GK:89};
