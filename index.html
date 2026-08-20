@@ -183,17 +183,26 @@
   }
   .am-btn span{color:var(--accent);}
 
-  .am-overlay{position:fixed;inset:0;background:rgba(20,20,18,.25);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s ease;}
-  .am-overlay.open{opacity:1;pointer-events:auto;}
-  .am-drawer{
-    position:fixed;top:0;right:0;bottom:0;width:400px;max-width:92vw;background:var(--surface);
-    z-index:101;box-shadow:-2px 0 24px rgba(0,0,0,.08);transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
-    display:flex;flex-direction:column;
+  .pr-fab{
+    position:fixed;bottom:20px;right:20px;z-index:99;
+    display:flex;align-items:center;gap:7px;font-family:'Inter';font-size:13px;font-weight:600;color:var(--text);
+    background:var(--surface);border:1px solid var(--border-strong,#D5D5D0);border-radius:100px;
+    padding:11px 18px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.1);
   }
-  .am-drawer.open{transform:translateX(0);}
-  .am-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);}
-  .am-head span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;}
-  .am-close{background:none;border:none;font-size:18px;color:var(--text-faint);cursor:pointer;line-height:1;}
+  .pr-fab span{color:var(--accent);}
+
+  .drawer-overlay{position:fixed;top:86px;left:0;right:0;bottom:0;background:rgba(20,20,18,.25);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+  .drawer-overlay.open{opacity:1;pointer-events:auto;}
+  .drawer{
+    position:fixed;top:86px;right:0;bottom:0;width:400px;max-width:92vw;background:var(--surface);
+    z-index:101;box-shadow:-2px 0 24px rgba(0,0,0,.08);transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;border-top:1px solid var(--border);
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-body{flex:1;min-height:0;overflow-y:auto;padding:16px;}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);}
+  .drawer-head span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;}
+  .drawer-close{background:none;border:none;font-size:18px;color:var(--text-faint);cursor:pointer;line-height:1;}
   .chat-box{background:var(--surface);display:flex;flex-direction:column;flex:1;min-height:0;}
   .chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
   .msg{max-width:78%;padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
@@ -266,10 +275,8 @@
   <nav>
     <button class="tab active" data-p="0">Overview</button>
     <button class="tab" data-p="mgmt">Management</button>
-    <button class="tab" data-p="1">Powerranking</button>
-    <button class="tab" data-p="2">News</button>
     <button class="tab" data-p="3">Transfers</button>
-    <button class="tab" data-p="4">Draft</button>
+    <button class="tab" data-p="4" style="text-decoration:line-through;text-decoration-color:var(--text-faint);">Draft</button>
   </nav>
 
   <!-- ===== OVERVIEW ===== -->
@@ -309,17 +316,6 @@
     <div id="mgmtBody"></div>
   </div>
 
-  <!-- ===== POWERRANKING ===== -->
-  <div class="panel" data-panel="1">
-    <div class="card" id="prCard"></div>
-    <button id="prToggle" style="width:100%;margin-top:10px;font-family:'Inter';font-size:13px;font-weight:500;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;display:none;">Vis alle 25</button>
-  </div>
-
-  <!-- ===== NEWS ===== -->
-  <div class="panel" data-panel="2">
-    <div id="newsBody"></div>
-  </div>
-
   <!-- ===== TRANSFERS ===== -->
   <div class="panel" data-panel="3">
     <p class="label">Forslag inden næste deadline <span id="deadlineLabel" style="text-transform:none;color:var(--text-dim);"></span></p>
@@ -332,23 +328,22 @@
     <div id="benchTrendBody"></div>
   </div>
 
-  <!-- ===== DRAFT ===== -->
+  <!-- ===== DRAFT (midlertidigt deaktiveret) ===== -->
   <div class="panel" data-panel="4">
-    <div class="pos-tabs">
-      <button class="on" data-pos="GK">Målmænd</button>
-      <button data-pos="DEF">Forsvar</button>
-      <button data-pos="MID">Midtbane</button>
-      <button data-pos="FWD">Angreb</button>
-    </div>
-    <div class="card" id="draftCard"></div>
+    <div class="card"><div class="empty-state" style="padding:32px 20px;">
+      <p>Draft-fanen er midlertidigt deaktiveret.</p>
+      <p class="sub">Aktiveres igen omkring næste redraft — onsdag 3. februar 2027 kl. 20:00.</p>
+    </div></div>
   </div>
 
+  <button class="pr-fab" id="prFab"><span>◆</span> Powerranking</button>
+
   <!-- ===== ASSISTENT MANAGER (drawer) ===== -->
-  <div class="am-overlay" id="amOverlay"></div>
-  <div class="am-drawer" id="amDrawer">
-    <div class="am-head">
+  <div class="drawer-overlay" id="amOverlay"></div>
+  <div class="drawer" id="amDrawer">
+    <div class="drawer-head">
       <span>✦ Assistent Manager</span>
-      <button class="am-close" id="amClose">✕</button>
+      <button class="drawer-close" id="amClose">✕</button>
     </div>
     <div class="chat-box">
       <div class="chat-msgs" id="chatMsgs">
@@ -366,13 +361,25 @@
     </div>
   </div>
 
+  <div class="drawer-overlay" id="prOverlay"></div>
+  <div class="drawer" id="prDrawer">
+    <div class="drawer-head">
+      <span>◆ Powerranking</span>
+      <button class="drawer-close" id="prClose">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="card" id="prCard"></div>
+      <button id="prToggle" style="width:100%;margin-top:10px;font-family:'Inter';font-size:13px;font-weight:500;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text-dim);cursor:pointer;display:none;">Vis alle 25</button>
+    </div>
+  </div>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
 const MY_ENTRY_ID = 1510;
 
-let state = { siteData:null, rankHistory:{}, powerranking:null, draftRankings:null, management:null, news:null };
+let state = { siteData:null, rankHistory:{}, powerranking:null, management:null };
 
 // ---------- tiny helpers ----------
 function shortName(full){
@@ -673,16 +680,6 @@ function renderRankedList(cardId, toggleBtnId, list){
   }
 }
 
-let activeDraftPos = 'GK';
-function renderDraft(draftData){
-  if(!draftData || !draftData.positions){
-    document.getElementById('draftCard').innerHTML = '<div class="empty-state"><p>Ingen data endnu.</p></div>';
-    return;
-  }
-  const list = draftData.positions[activeDraftPos] || [];
-  renderRankedList('draftCard', null, list);
-}
-
 // ---------- TRANSFERS ----------
 function renderTransfersTab(sd){
   document.getElementById('deadlineLabel').textContent = sd.next_deadline ? `— ${fmtDate(sd.next_deadline)}` : '';
@@ -721,29 +718,15 @@ function renderTransfersTab(sd){
   }
 }
 
-// ---------- NEWS ----------
-function renderNews(news){
-  const body = document.getElementById('newsBody');
-  if(!news){
-    body.innerHTML = '<div class="empty-state"><p>Nyhedsfanen er ikke bygget færdig endnu.</p>' +
-      '<p class="sub">Kræver Gemini-søgning med streng kildekontrol — kommer i næste fase.</p></div>';
-    return;
-  }
-  // Struktur klar til når news.json findes: kategori-bokse ligesom i mockup'et.
-  body.innerHTML = '<div class="empty-state"><p>Ingen nyheder lige nu.</p></div>';
-}
-
 // ---------- refresh / load orchestration ----------
 async function loadAll(){
-  const [siteData, rankHistory, powerranking, draftRankings, management, news] = await Promise.all([
+  const [siteData, rankHistory, powerranking, management] = await Promise.all([
     safeFetch('./site-data.json'),
     safeFetch('./rank-history.json'),
     safeFetch('./powerranking.json'),
-    safeFetch('./draft-rankings.json'),
     safeFetch('./management.json'),
-    safeFetch('./news.json'),
   ]);
-  state = { siteData, rankHistory: rankHistory||{}, powerranking, draftRankings, management, news };
+  state = { siteData, rankHistory: rankHistory||{}, powerranking, management };
 
   if(siteData){
     renderAlerts(siteData.alerts);
@@ -754,9 +737,7 @@ async function loadAll(){
     renderTransfersTab(siteData);
   }
   if(powerranking) renderRankedList('prCard', 'prToggle', powerranking.players);
-  if(draftRankings) renderDraft(draftRankings);
   if(siteData) renderManagement(management, siteData);
-  renderNews(news);
 }
 
 // ---------- page chrome: loader, tabs, refresh, drawer (uændret fra mockup) ----------
@@ -769,15 +750,6 @@ document.querySelectorAll('nav .tab').forEach(btn=>{
   });
 });
 
-document.querySelectorAll('.pos-tabs button').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.pos-tabs button').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-    activeDraftPos = btn.dataset.pos;
-    renderDraft(state.draftRankings);
-  });
-});
-
 document.getElementById('refreshBtn').addEventListener('click', async function(){
   const btn=this, icon=document.getElementById('refreshIcon'), label=document.getElementById('refreshLabel');
   btn.disabled=true; icon.classList.add('spin'); icon.textContent='↻'; label.textContent='Opdaterer…';
@@ -786,7 +758,14 @@ document.getElementById('refreshBtn').addEventListener('click', async function()
   setTimeout(()=>{ icon.textContent='↻'; label.textContent='Opdatér'; btn.disabled=false; }, 1200);
 });
 
+function closeAllDrawers(){
+  ['am','pr'].forEach(prefix=>{
+    document.getElementById(prefix+'Overlay').classList.remove('open');
+    document.getElementById(prefix+'Drawer').classList.remove('open');
+  });
+}
 function openAM(){
+  closeAllDrawers();
   document.getElementById('amOverlay').classList.add('open');
   document.getElementById('amDrawer').classList.add('open');
 }
@@ -794,9 +773,21 @@ function closeAM(){
   document.getElementById('amOverlay').classList.remove('open');
   document.getElementById('amDrawer').classList.remove('open');
 }
+function openPR(){
+  closeAllDrawers();
+  document.getElementById('prOverlay').classList.add('open');
+  document.getElementById('prDrawer').classList.add('open');
+}
+function closePR(){
+  document.getElementById('prOverlay').classList.remove('open');
+  document.getElementById('prDrawer').classList.remove('open');
+}
 document.getElementById('amBtn').addEventListener('click', openAM);
 document.getElementById('amClose').addEventListener('click', closeAM);
 document.getElementById('amOverlay').addEventListener('click', closeAM);
+document.getElementById('prFab').addEventListener('click', openPR);
+document.getElementById('prClose').addEventListener('click', closePR);
+document.getElementById('prOverlay').addEventListener('click', closePR);
 
 // discord-link: sæt jeres reelle webhook-kanal-URL her (ikke webhooken selv - et almindeligt link til kanalen)
 document.getElementById('discordLink').href = '#';
