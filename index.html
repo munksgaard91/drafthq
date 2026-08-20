@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fantasy Premier League HQ</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <style>
@@ -132,6 +133,7 @@
   .news-item{padding:13px 0;border-bottom:1px solid var(--border);min-height:70px;}
   .news-item:last-child{border-bottom:none;}
   .news-item .top{display:flex;align-items:center;gap:8px;margin-bottom:5px;justify-content:flex-end;}
+  .news-item .top.left{justify-content:flex-start;}
   .news-item .when{font-size:11.5px;color:var(--text-faint);margin-left:auto;}
   .news-item p{font-size:13px;color:var(--text-dim);margin:0;line-height:1.55;}
   .news-item .who{font-weight:500;color:var(--text);}
@@ -156,7 +158,7 @@
   .fix-row .club{width:110px;flex:none;display:flex;flex-direction:column;gap:2px;}
   .fix-row .cn{font-size:13px;font-weight:500;}
   .fix-row .cc{font-size:11px;color:var(--text-faint);}
-  .fix-cells{display:flex;gap:5px;}
+  .fix-cells{display:flex;gap:5px;margin-left:auto;}
   .fix-cell{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;}
   .fix-1{background:#DCEEE1;color:#1F6E43;}
   .fix-2{background:#EDF5E9;color:#3D7A4E;}
@@ -382,6 +384,28 @@ function shortName(full){
   }
   return parts[parts.length-1];
 }
+function translateInjuryNews(text){
+  if(!text) return text;
+  let t = text;
+  const wordMap = {
+    'Shin injury':'Skinnebensskade', 'Knee injury':'Knæskade', 'Ankle injury':'Ankelskade',
+    'Hamstring injury':'Baglårsskade', 'Groin injury':'Lyskeskade', 'Calf injury':'Lægskade',
+    'Thigh injury':'Lårskade', 'Back injury':'Rygskade', 'Foot injury':'Fodskade',
+    'Achilles injury':'Achillesskade', 'Toe injury':'Tåskade', 'Rib injury':'Ribbensskade',
+    'Hip injury':'Hofteskade', 'Head injury':'Hovedskade', 'Wrist injury':'Håndledsskade',
+    'Elbow injury':'Albueskade', 'Abdominal injury':'Mavemuskelskade',
+    'Unspecified injury':'Uspecificeret skade', 'Knock':'Lettere skade',
+    'Illness':'Sygdom', 'Suspended':'Suspenderet', 'Personal reasons':'Personlige årsager',
+  };
+  for(const [en,da] of Object.entries(wordMap)){
+    t = t.replace(new RegExp(en,'i'), da);
+  }
+  t = t.replace(/chance of playing/i, 'spilchance');
+  t = t.replace(/Unknown return date/i, 'ukendt returdato');
+  t = t.replace(/Expected back/i, 'forventet retur');
+  return t;
+}
+
 function fmtDate(iso){
   if(!iso) return 'Ukendt';
   const d = new Date(iso);
@@ -529,8 +553,8 @@ function renderManagement(mgmt, sd){
       ? '<div class="empty-state"><p>Ingen kendte skader på din trup lige nu.</p></div>'
       : mgmt.injury_news.map(n=>`
         <div class="news-item">
-          <div class="top"><span class="tag injury">Skade</span></div>
-          <p><span class="who">${n.player}</span> (${n.club}) — ${n.news}</p>
+          <div class="top left"><span class="tag injury">Skade</span></div>
+          <p><span class="who">${n.player}</span> (${n.club}) — ${translateInjuryNews(n.news)}</p>
         </div>`).join('');
     body.innerHTML = `
       <div class="card" style="margin-bottom:8px;">
@@ -586,8 +610,8 @@ function renderManagement(mgmt, sd){
     ? '<div class="empty-state"><p>Ingen kendte skader på din trup lige nu.</p></div>'
     : mgmt.injury_news.map(n=>`
       <div class="news-item">
-        <div class="top"><span class="tag injury">Skade</span></div>
-        <p><span class="who">${n.player}</span> (${n.club}) — ${n.news}</p>
+        <div class="top left"><span class="tag injury">Skade</span></div>
+        <p><span class="who">${n.player}</span> (${n.club}) — ${translateInjuryNews(n.news)}</p>
       </div>`).join('');
 
   body.innerHTML = `
