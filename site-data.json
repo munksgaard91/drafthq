@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21T13:36:54Z",
+  "updated": "2026-08-21T19:18:31Z",
   "current_gw": 0,
   "season_started": false,
   "next_deadline": "2026-08-21T17:30:00Z",
@@ -41,7 +41,24 @@
     }
   ],
   "point_gap": 0,
-  "alerts": [],
+  "alerts": [
+    {
+      "player": "Pedro Porro Sauceda",
+      "club": "Spurs",
+      "owner_entry_id": 126623,
+      "owner": "HernDog IF",
+      "news": "Lack of match fitness - Expected back 29 Aug",
+      "chance": 0
+    },
+    {
+      "player": "Micky van de Ven",
+      "club": "Spurs",
+      "owner_entry_id": 126623,
+      "owner": "HernDog IF",
+      "news": "Unspecified injury - Expected back 29 Aug",
+      "chance": 0
+    }
+  ],
   "gw_summaries": [],
   "highlights": {
     "highest_gw_score": null,
@@ -80,6 +97,22 @@
       "player_in": "Bruno Guimarães Rodriguez Moura",
       "player_out": "Mikel Merino Zazón",
       "added": "2026-08-18T18:56:45.549244Z"
+    },
+    {
+      "gw": 1,
+      "entry_name": "Kop of Jensen",
+      "kind": "Free agent",
+      "player_in": "James Maddison",
+      "player_out": "Pascal Groß",
+      "added": "2026-08-21T15:46:45.953732Z"
+    },
+    {
+      "gw": 1,
+      "entry_name": "Kop of Jensen",
+      "kind": "Free agent",
+      "player_in": "Sávio Moreira de Oliveira",
+      "player_out": "Ryan Gravenberch",
+      "added": "2026-08-21T15:48:11.155384Z"
     }
   ]
 }

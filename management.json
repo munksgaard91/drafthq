@@ -1,43 +1,11 @@
 {
   "available": true,
-  "lineup_set": false,
-  "squad": [
-    {
-      "id": 229,
-      "name": "James Tarkowski",
-      "club": "Everton",
-      "pos": "DEF",
-      "status": "a",
-      "chance": null
-    },
-    {
-      "id": 426,
-      "name": "Bruno Borges Fernandes",
-      "club": "Man Utd",
-      "pos": "MID",
-      "status": "a",
-      "chance": null
-    },
+  "lineup_set": true,
+  "starters": [
     {
       "id": 1,
       "name": "David Raya Martín",
       "club": "Arsenal",
-      "pos": "GK",
-      "status": "a",
-      "chance": null
-    },
-    {
-      "id": 10,
-      "name": "Benjamin White",
-      "club": "Arsenal",
-      "pos": "DEF",
-      "status": "a",
-      "chance": 100
-    },
-    {
-      "id": 82,
-      "name": "Caoimhín Kelleher",
-      "club": "Brentford",
       "pos": "GK",
       "status": "a",
       "chance": null
@@ -51,9 +19,25 @@
       "chance": null
     },
     {
-      "id": 480,
-      "name": "Morgan Gibbs-White",
-      "club": "Nott'm Forest",
+      "id": 229,
+      "name": "James Tarkowski",
+      "club": "Everton",
+      "pos": "DEF",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 10,
+      "name": "Benjamin White",
+      "club": "Arsenal",
+      "pos": "DEF",
+      "status": "a",
+      "chance": 100
+    },
+    {
+      "id": 426,
+      "name": "Bruno Borges Fernandes",
+      "club": "Man Utd",
       "pos": "MID",
       "status": "a",
       "chance": null
@@ -67,14 +51,6 @@
       "chance": null
     },
     {
-      "id": 154,
-      "name": "Cole Palmer",
-      "club": "Chelsea",
-      "pos": "MID",
-      "status": "a",
-      "chance": null
-    },
-    {
       "id": 399,
       "name": "Rayan Cherki",
       "club": "Man City",
@@ -83,9 +59,25 @@
       "chance": null
     },
     {
-      "id": 463,
-      "name": "Nick Woltemade",
-      "club": "Newcastle",
+      "id": 480,
+      "name": "Morgan Gibbs-White",
+      "club": "Nott'm Forest",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 154,
+      "name": "Cole Palmer",
+      "club": "Chelsea",
+      "pos": "MID",
+      "status": "a",
+      "chance": null
+    },
+    {
+      "id": 106,
+      "name": "Igor Thiago Nascimento Rodrigues",
+      "club": "Brentford",
       "pos": "FWD",
       "status": "a",
       "chance": null
@@ -97,6 +89,14 @@
       "pos": "FWD",
       "status": "d",
       "chance": 75
+    },
+    {
+      "id": 82,
+      "name": "Caoimhín Kelleher",
+      "club": "Brentford",
+      "pos": "GK",
+      "status": "a",
+      "chance": null
     },
     {
       "id": 449,
@@ -115,12 +115,21 @@
       "chance": null
     },
     {
-      "id": 106,
-      "name": "Igor Thiago Nascimento Rodrigues",
-      "club": "Brentford",
+      "id": 463,
+      "name": "Nick Woltemade",
+      "club": "Newcastle",
       "pos": "FWD",
       "status": "a",
       "chance": null
+    }
+  ],
+  "bench": [],
+  "suggestions": [
+    {
+      "out": "Benjamin Sesko",
+      "in": null,
+      "type": "Formation",
+      "reason": "Benjamin Sesko er flagget (75% spilchance), men ingen bænket spiller på samme position kan erstatte 1:1 - overvej et formationsskift."
     }
   ],
   "fixtures": [
@@ -233,5 +242,5 @@
       "chance": 75
     }
   ],
-  "updated": "2026-08-21T13:36:54Z"
+  "updated": "2026-08-21T19:18:31Z"
 }
