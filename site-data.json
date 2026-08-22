@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21T19:18:31Z",
+  "updated": "2026-08-22T07:22:14Z",
   "current_gw": 0,
   "season_started": false,
   "next_deadline": "2026-08-21T17:30:00Z",
@@ -7,40 +7,40 @@
     {
       "league_entry": 1510,
       "name": "HaCunha Mateta",
-      "total": 0,
+      "total": 26,
       "rank": 1,
-      "trend": null
-    },
-    {
-      "league_entry": 2539,
-      "name": "Bottlers Anonymous",
-      "total": 0,
-      "rank": 2,
-      "trend": null
-    },
-    {
-      "league_entry": 17813,
-      "name": "Kop of Jensen",
-      "total": 0,
-      "rank": 3,
       "trend": null
     },
     {
       "league_entry": 48956,
       "name": "Mainoo Character FC",
-      "total": 0,
-      "rank": 4,
+      "total": 23,
+      "rank": 2,
+      "trend": null
+    },
+    {
+      "league_entry": 2539,
+      "name": "Bottlers Anonymous",
+      "total": 11,
+      "rank": 3,
       "trend": null
     },
     {
       "league_entry": 127144,
       "name": "HernDog IF",
-      "total": 0,
+      "total": 6,
+      "rank": 4,
+      "trend": null
+    },
+    {
+      "league_entry": 17813,
+      "name": "Kop of Jensen",
+      "total": 6,
       "rank": 5,
       "trend": null
     }
   ],
-  "point_gap": 0,
+  "point_gap": 20,
   "alerts": [
     {
       "player": "Pedro Porro Sauceda",
