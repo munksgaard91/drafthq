@@ -87,8 +87,8 @@
       "name": "Benjamin Sesko",
       "club": "Man Utd",
       "pos": "FWD",
-      "status": "d",
-      "chance": 75
+      "status": "a",
+      "chance": 100
     },
     {
       "id": 82,
@@ -124,14 +124,7 @@
     }
   ],
   "bench": [],
-  "suggestions": [
-    {
-      "out": "Benjamin Sesko",
-      "in": null,
-      "type": "Formation",
-      "reason": "Benjamin Sesko er flagget (75% spilchance), men ingen bænket spiller på samme position kan erstatte 1:1 - overvej et formationsskift."
-    }
-  ],
+  "suggestions": [],
   "fixtures": [
     {
       "club": "Arsenal",
@@ -233,14 +226,6 @@
       ]
     }
   ],
-  "injury_news": [
-    {
-      "player": "Benjamin Sesko",
-      "club": "Man Utd",
-      "news": "Shin injury - 75% chance of playing",
-      "status": "d",
-      "chance": 75
-    }
-  ],
-  "updated": "2026-08-22T07:22:14Z"
+  "injury_news": [],
+  "updated": "2026-08-22T13:23:22Z"
 }
